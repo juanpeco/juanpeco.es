@@ -1,11 +1,11 @@
-<!-- blog.html -->
 <!doctype html>
-<html lang="es" class="h-full">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blog — IA Educativa | Juan Peco</title>
   <meta name="description" content="Artículos sobre IA educativa aplicada a Economía, Empresa y Turismo. Casos, rúbricas, protocolos y recursos." />
+  <link rel="stylesheet" href="css/estilos.css" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,0,0,.08); }
   </style>
 </head>
-<body class="h-full font-body bg-gray-50 text-gray-900">
+<body class="font-body bg-gray-50 text-gray-900">
   <nav class="bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="index.html" class="font-heading text-xl font-bold text-indigo-900">Juan Peco</a>
@@ -25,6 +25,7 @@
         <a href="index.html" class="text-gray-600 hover:text-indigo-900">Inicio</a>
         <a href="proyectos.html" class="text-gray-600 hover:text-indigo-900">Proyectos</a>
         <a href="blog.html" class="text-indigo-900 font-semibold">Blog</a>
+        <a href="contacto.html" class="text-gray-600 hover:text-indigo-900">Contacto</a>
       </div>
     </div>
   </nav>
@@ -33,42 +34,36 @@
     <header class="text-center mb-10">
       <h1 class="font-heading text-4xl md:text-5xl text-indigo-900 mb-3">Blog de IA Educativa</h1>
       <p class="text-gray-600 max-w-3xl mx-auto">
-        Publicar bien y con constancia es lo que te posiciona. Aquí va el contenido que “demuestra método”.
+        Artículos que demuestran método (no postureo): actividad + evidencia + evaluación.
       </p>
     </header>
 
-    <!-- Grid de artículos (plantilla) -->
     <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- DUPLICA ESTE BLOQUE PARA CADA ARTÍCULO -->
-      <a href="#" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">IA responsable · 7 min</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Protocolo IA en aula: lo permitido, lo no permitido y cómo evaluarlo</h2>
-        <p class="text-gray-700 text-sm">Guía práctica para evitar “copia-pega”: proceso, evidencias y rúbricas.</p>
+      <!-- ✅ Este existe en tu repo -->
+      <a href="articulos/simulador-mercado.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+        <div class="text-sm text-gray-500 mb-2">Economía · Simulación</div>
+        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Simulador de mercado: oferta, demanda y decisiones</h2>
+        <p class="text-gray-700 text-sm">Actividad replicable: decisiones, resultados y evaluación por evidencias.</p>
       </a>
 
-      <a href="#" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Economía · 6 min</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Cómo enseñar oferta y demanda con simulación (sin memorizar curvas)</h2>
-        <p class="text-gray-700 text-sm">Actividad + evidencias + evaluación. Transferible a Bachillerato y FP.</p>
+      <!-- Plantillas: crea los HTML en /articulos y enlaza aquí -->
+      <a href="articulos/protocolo-ia-responsable.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+        <div class="text-sm text-gray-500 mb-2">IA responsable</div>
+        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Protocolo IA en aula: permitido / no permitido</h2>
+        <p class="text-gray-700 text-sm">Reglas claras, citación, verificación y cómo evaluar el proceso.</p>
       </a>
 
-      <a href="#" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Empresa · 8 min</div>
+      <a href="articulos/empresa-virtual-kpi.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+        <div class="text-sm text-gray-500 mb-2">Empresa · KPI</div>
         <h2 class="font-heading text-2xl text-indigo-900 mb-2">Empresa virtual: tablero de decisiones + KPI + rúbrica</h2>
-        <p class="text-gray-700 text-sm">Plantilla replicable y cómo introducir IA para revisar riesgos.</p>
+        <p class="text-gray-700 text-sm">Cómo montar una simulación con evidencias y defensa oral.</p>
       </a>
     </section>
-
-    <div class="mt-10 text-center">
-      <a href="index.html#contacto" class="inline-flex items-center justify-center bg-indigo-900 hover:bg-indigo-800 text-white px-8 py-3 rounded-full font-semibold transition">
-        Contacto para centros
-      </a>
-    </div>
   </main>
 
   <footer class="bg-gray-900 text-white py-8 mt-12">
     <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
-      © 2026 Juan Peco · <a class="hover:text-orange-400" href="mailto:hola@juanpeco.es">hola@juanpeco.es</a>
+      © 2026 Juan Peco · <a class="hover:text-orange-400" href="contacto.html">Contacto</a>
     </div>
   </footer>
 </body>
