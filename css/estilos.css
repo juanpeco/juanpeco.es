@@ -1,62 +1,37 @@
 /* Base */
-:root{
-  --max: 1100px;
-}
-
-*{ box-sizing: border-box; }
-
-html, body{
-  margin: 0;
-  padding: 0;
-}
-
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
 body{
   font-family: Arial, sans-serif;
   line-height: 1.5;
-  background: #f9fafb; /* gris muy suave */
-  color: #111827;
+  background:#f9fafb;
+  color:#111827;
 }
 
-/* Contenedor opcional si algún día haces páginas sin Tailwind */
-.container{
-  max-width: var(--max);
+/* ✅ PÁGINAS “SIMPLES” (blog/contacto/proyectos):
+   centramos TODO lo que sea hijo directo del body,
+   EXCEPTO el #app (index Tailwind) */
+body > :not(#app):not(script):not(style){
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
 }
 
-/* Enlaces */
-a{
-  color: inherit;
-  text-decoration: none;
-}
-a:hover{
-  text-decoration: underline;
-}
-
-/* Navegación (sin “pelear” con Tailwind) */
+/* Navegación simple */
 nav a{
   margin-right: 12px;
-  text-decoration: none;
+  text-decoration:none;
 }
-nav a:hover{
-  text-decoration: underline;
-}
+nav a:hover{ text-decoration: underline; }
 
-/* Header/Footer genéricos */
-header{
-  margin-bottom: 24px;
-}
-
+/* Footer simple */
 footer{
-  margin-top: 48px;
-  opacity: 0.85;
+  margin-top:40px;
+  opacity:0.75;
 }
 
 /* Imágenes */
-img{
-  max-width: 100%;
-  height: auto;
-}
+img{ max-width:100%; height:auto; }
 
 /* Accesibilidad */
 :focus-visible{
