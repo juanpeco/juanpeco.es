@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juan Peco - Docente</title>
+
+<meta name="description" content="Docente especializado en Economía, Empresa y Turismo. Innovación educativa e inteligencia artificial aplicada al aula.">
+
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<header>
+<h1>Juan Peco</h1>
+<p>Docente especializado en Economía, Empresa y Turismo</p>
+</header>
+
+<nav>
+<a href="index.html">Inicio</a>
+<a href="blog.html">Blog</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+
+<section>
+
+<h2>Innovación educativa</h2>
+
+<ul>
+<li>1500+ prompts educativos</li>
+<li>50+ recursos didácticos</li>
+<li>IA aplicada a Bachillerato y FP</li>
+<li>Simulaciones empresariales</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Laboratorio de IA educativa</h2>
+
+<ul>
+<li>Simulador de mercado</li>
+<li>CEO por un día</li>
+<li>Inversor virtual</li>
+<li>Agencia de viajes digital</li>
+</ul>
+
+</section>
+
+<footer>
+
+<p>© Juan Peco</p>
+
+</footer>
+
+</body>
+</html>

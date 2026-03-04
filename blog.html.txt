@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Blog - Juan Peco</title>
+</head>
+
+<body>
+
+<h1>Blog de innovación educativa</h1>
+
+<ul>
+
+<li>
+<a href="articulos/ia-en-el-aula.html">
+IA en el aula de economía
+</a>
+</li>
+
+<li>
+<a href="articulos/simulador-mercado.html">
+Simulación de mercado en clase
+</a>
+</li>
+
+</ul>
+
+</body>
+
+</html>

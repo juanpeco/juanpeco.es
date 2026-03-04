@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>IA en el aula</title>
+</head>
+
+<body>
+
+<h1>Cómo usar inteligencia artificial en clase de economía</h1>
+
+<p>
+La inteligencia artificial permite crear casos empresariales,
+simulaciones económicas y actividades interactivas para el aula.
+</p>
+
+<h2>Actividad: simulación de mercado</h2>
+
+<p>
+Los estudiantes toman decisiones de precios y analizan cómo cambia
+la oferta y la demanda.
+</p>
+
+</body>
+
+</html>
