@@ -1,106 +1,763 @@
-<!DOCTYPE html>
-<html lang="es">
+<!-- index.html -->
+<!doctype html>
+<html lang="es" class="h-full">
 <head>
-<meta charset="UTF-8">
-<title>Juan Peco - Docente</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juan Peco — Docente y Referente en IA Educativa (Economía, Empresa y Turismo)</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO -->
+  <meta name="description" content="Docente especializado en Economía, Empresa y Turismo. IA Educativa aplicada con proyectos reales, simulaciones y recursos para Bachillerato y FP. Colaboro con centros públicos, concertados y privados." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://juanpeco.github.io/juanpeco.es/" />
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Juan Peco — Docente y Referente en IA Educativa" />
+  <meta property="og:description" content="IA educativa aplicada a Economía, Empresa y Turismo: proyectos, recursos y laboratorio de aula." />
+  <meta property="og:url" content="https://juanpeco.github.io/juanpeco.es/" />
+  <!-- Sube una imagen a /img/og.jpg -->
+  <meta property="og:image" content="img/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a365d',
+            secondary: '#2c5282',
+            accent: '#ed8936',
+            light: '#f7fafc',
+            dark: '#1a202c'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    .font-heading { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #818cf8 50%, #6366f1 100%); }
+    .card-hover { transition: all 0.25s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(99, 102, 241, 0.14); }
+    .prompt-card { transition: all 0.2s ease; }
+    .prompt-card:hover { background: #edf2f7; }
+    .tab-active { border-bottom: 3px solid #ed8936; color: #1a365d; }
+    .modal-overlay { background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); }
+    .scroll-container { scrollbar-width: thin; scrollbar-color: #2c5282 #e2e8f0; }
+    .scroll-container::-webkit-scrollbar { width: 8px; }
+    .scroll-container::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 4px; }
+    .scroll-container::-webkit-scrollbar-thumb { background: #2c5282; border-radius: 4px; }
+    .fade-in { animation: fadeIn 0.5s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px);} to { opacity:1; transform: translateY(0);} }
+  </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Juan Peco",
+    "jobTitle":"Docente especializado en Economía, Empresa y Turismo",
+    "url":"https://juanpeco.github.io/juanpeco.es/",
+    "email":"mailto:hola@juanpeco.es",
+    "telephone":"+34647033746",
+    "knowsAbout":["IA educativa","Economía","Empresa","Turismo","Simulaciones empresariales","Aprendizaje basado en proyectos"],
+    "sameAs":[
+      "https://www.linkedin.com/",
+      "https://www.instagram.com/"
+    ]
+  }
+  </script>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="h-full font-body bg-gray-50 text-gray-900">
+  <div id="app" class="h-full overflow-auto scroll-container">
 
-<header class="bg-white shadow">
-<div class="max-w-6xl mx-auto px-6 py-6 flex justify-between">
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-300 to-purple-200 flex items-center justify-center border-2 border-purple-400">
+            <span class="text-indigo-700 font-bold text-lg">JP</span>
+          </div>
+          <span class="font-heading text-primary font-bold text-xl">Juan Peco</span>
+        </a>
 
-<h1 class="text-2xl font-bold">Juan Peco</h1>
+        <div class="hidden md:flex gap-6 text-sm font-medium">
+          <button onclick="scrollToSection('sobre-mi')" class="text-gray-600 hover:text-primary transition">Sobre mí</button>
+          <button onclick="scrollToSection('referente')" class="text-gray-600 hover:text-primary transition">Referente IA</button>
+          <button onclick="scrollToSection('laboratorio')" class="text-gray-600 hover:text-primary transition">Laboratorio IA</button>
+          <button onclick="scrollToSection('casos')" class="text-gray-600 hover:text-primary transition">Casos reales</button>
+          <a href="proyectos.html" class="text-gray-600 hover:text-primary transition">Proyectos</a>
+          <a href="blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+          <button onclick="scrollToSection('contacto')" class="bg-accent text-white px-4 py-2 rounded-full hover:bg-orange-500 transition">Contactar</button>
+        </div>
 
-<nav class="space-x-6">
-<a href="index.html" class="hover:text-blue-600">Inicio</a>
-<a href="blog.html" class="hover:text-blue-600">Blog</a>
-<a href="contacto.html" class="hover:text-blue-600">Contacto</a>
-</nav>
+        <button onclick="toggleMobileMenu()" class="md:hidden text-primary" aria-label="Abrir menú">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
 
-</div>
-</header>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 py-4 space-y-3">
+        <button onclick="scrollToSection('sobre-mi'); toggleMobileMenu();" class="block w-full text-left text-gray-600 hover:text-primary py-2">Sobre mí</button>
+        <button onclick="scrollToSection('referente'); toggleMobileMenu();" class="block w-full text-left text-gray-600 hover:text-primary py-2">Referente IA</button>
+        <button onclick="scrollToSection('laboratorio'); toggleMobileMenu();" class="block w-full text-left text-gray-600 hover:text-primary py-2">Laboratorio IA</button>
+        <button onclick="scrollToSection('casos'); toggleMobileMenu();" class="block w-full text-left text-gray-600 hover:text-primary py-2">Casos reales</button>
+        <a href="proyectos.html" class="block w-full text-left text-gray-600 hover:text-primary py-2">Proyectos</a>
+        <a href="blog.html" class="block w-full text-left text-gray-600 hover:text-primary py-2">Blog</a>
+        <button onclick="scrollToSection('contacto'); toggleMobileMenu();" class="block w-full bg-accent text-white px-4 py-2 rounded-full text-center">Contactar</button>
+      </div>
+    </nav>
 
+    <!-- HERO -->
+    <section class="gradient-bg pt-24 pb-16 px-4 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#grid)"/>
+        </svg>
+      </div>
 
-<section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <!-- Sube tu foto a /img/juan.jpg -->
+          <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-accent shadow-2xl flex-shrink-0 bg-white/10">
+            <img src="img/juan.jpg" alt="Juan Peco" class="w-full h-full object-cover" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-5xl font-bold&quot;>JP</div>';">
+          </div>
 
-<h2 class="text-4xl font-bold mb-6">
-Docente especializado en Economía, Empresa y Turismo
-</h2>
+          <div class="text-center md:text-left">
+            <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Juan Peco</h1>
+            <p class="text-xl md:text-2xl text-blue-200 mb-6">
+              Docente especializado en Economía, Empresa y Turismo · <span class="font-semibold">IA educativa aplicada</span>
+            </p>
 
-<p class="text-lg mb-10">
-Integrando inteligencia artificial y metodologías activas para transformar el aprendizaje.
-</p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur">📚 Bachillerato</span>
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur">🎓 Formación Profesional</span>
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur">🤖 IA en aula</span>
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur">🧪 Proyectos + evaluación</span>
+            </div>
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+              <button onclick="scrollToSection('contacto')" class="bg-accent hover:bg-orange-500 text-white px-8 py-3 rounded-full font-semibold transition shadow-lg">
+                Contactar (centros)
+              </button>
+              <a href="blog.html" class="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-full font-semibold transition backdrop-blur inline-flex items-center justify-center">
+                Ver artículos
+              </a>
+            </div>
 
-<div class="bg-white p-6 rounded-xl shadow">
-<p class="text-3xl font-bold text-blue-600">1500+</p>
-<p>Prompts IA</p>
-</div>
+            <p class="text-blue-200 text-sm mt-6 max-w-2xl">
+              Enfoque: casos reales, simulaciones, pensamiento crítico y uso responsable de IA. Trabajo con centros públicos, concertados y privados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="bg-white p-6 rounded-xl shadow">
-<p class="text-3xl font-bold text-blue-600">50+</p>
-<p>Recursos educativos</p>
-</div>
+    <!-- STATS -->
+    <section class="bg-white py-8 px-4 shadow-sm">
+      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="fade-in">
+          <div class="text-3xl md:text-4xl font-bold text-primary">1500+</div>
+          <div class="text-gray-500 text-sm">Prompts IA (aula)</div>
+        </div>
+        <div class="fade-in" style="animation-delay:.08s">
+          <div class="text-3xl md:text-4xl font-bold text-primary">3</div>
+          <div class="text-gray-500 text-sm">Áreas núcleo</div>
+        </div>
+        <div class="fade-in" style="animation-delay:.16s">
+          <div class="text-3xl md:text-4xl font-bold text-primary">50+</div>
+          <div class="text-gray-500 text-sm">Recursos y dinámicas</div>
+        </div>
+        <div class="fade-in" style="animation-delay:.24s">
+          <div class="text-3xl md:text-4xl font-bold text-primary">100%</div>
+          <div class="text-gray-500 text-sm">Aplicación práctica</div>
+        </div>
+      </div>
+    </section>
 
-<div class="bg-white p-6 rounded-xl shadow">
-<p class="text-3xl font-bold text-blue-600">3</p>
-<p>Especialidades</p>
-</div>
+    <!-- SOBRE MI -->
+    <section id="sobre-mi" class="py-16 px-4 bg-gray-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-heading text-3xl md:text-4xl text-primary text-center mb-12">Sobre mí</h2>
 
-<div class="bg-white p-6 rounded-xl shadow">
-<p class="text-3xl font-bold text-blue-600">100%</p>
-<p>Innovación</p>
-</div>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <p class="text-gray-700 leading-relaxed mb-5">
+              Transformo la enseñanza de economía, empresa y turismo integrando <strong class="text-primary">IA educativa</strong> con metodologías activas:
+              proyectos, simulaciones, evaluación competencial y recursos interactivos.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-5">
+              Mi foco no es “usar IA por usarla”, sino <strong class="text-accent">mejorar resultados</strong>: comprensión, autonomía, calidad del trabajo y
+              pensamiento crítico. Con guías y protocolos para un uso responsable.
+            </p>
 
-</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">ABP</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Simulaciones</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Rúbricas</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">LOMLOE</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">IA responsable</span>
+            </div>
+          </div>
 
-</section>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+              <div class="text-4xl mb-3">🎯</div>
+              <h3 class="font-semibold text-primary mb-2">Aprendizaje útil</h3>
+              <p class="text-sm text-gray-500">Situaciones reales y transferibles</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+              <div class="text-4xl mb-3">🧠</div>
+              <h3 class="font-semibold text-primary mb-2">Pensamiento crítico</h3>
+              <p class="text-sm text-gray-500">Evidencias, criterios, revisión</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+              <div class="text-4xl mb-3">⚙️</div>
+              <h3 class="font-semibold text-primary mb-2">Sistemas</h3>
+              <p class="text-sm text-gray-500">Plantillas, flujos, evaluación</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+              <div class="text-4xl mb-3">📈</div>
+              <h3 class="font-semibold text-primary mb-2">Mejora medible</h3>
+              <p class="text-sm text-gray-500">Indicadores y seguimiento</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- REFERENTE -->
+    <section id="referente" class="py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-block bg-indigo-100 px-4 py-2 rounded-full mb-4">
+            <span class="text-indigo-700 font-semibold text-sm">🏅 POSICIONAMIENTO</span>
+          </div>
+          <h2 class="font-heading text-4xl md:text-5xl text-primary mb-4">Por qué mi enfoque es “de referente”</h2>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            No es “prompts y ya”: es un sistema docente completo (diseño → actividad → evaluación → evidencias → mejora).
+          </p>
+        </div>
 
-<section class="bg-white py-16">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 border-l-4 border-indigo-500 card-hover">
+            <div class="text-5xl mb-4">🧭</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Marco claro</h3>
+            <p class="text-gray-700 text-sm">
+              IA con reglas: objetivos, criterios, rúbricas, trazabilidad y uso responsable (evita “copiar-pegar”).
+            </p>
+          </div>
 
-<div class="max-w-6xl mx-auto px-6">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-l-4 border-blue-500 card-hover">
+            <div class="text-5xl mb-4">🧪</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Laboratorio de aula</h3>
+            <p class="text-gray-700 text-sm">
+              Simulaciones, analítica de aprendizaje, casos reales y proyectos que conectan con el mundo profesional.
+            </p>
+          </div>
 
-<h2 class="text-3xl font-bold mb-10">
-Laboratorio de IA educativa
-</h2>
+          <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-l-4 border-orange-500 card-hover">
+            <div class="text-5xl mb-4">📚</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Producción pública</h3>
+            <p class="text-gray-700 text-sm">
+              Artículos, guías y recursos replicables para centros: lo que te posiciona es publicar (bien) y con constancia.
+            </p>
+          </div>
+        </div>
 
-<div class="grid md:grid-cols-3 gap-8">
+        <!-- Mini proof -->
+        <div class="mt-10 bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <div class="grid md:grid-cols-3 gap-6 items-center">
+            <div class="md:col-span-2">
+              <h3 class="font-heading text-2xl text-primary mb-2">Lo que ofreces a un centro (sin vender humo)</h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex gap-2"><span class="text-accent font-bold">✓</span> Secuencias listas: actividad + rúbrica + plantilla + evidencia</li>
+                <li class="flex gap-2"><span class="text-accent font-bold">✓</span> Protocolos anti-copia: roles, pasos, verificación y reflexión</li>
+                <li class="flex gap-2"><span class="text-accent font-bold">✓</span> Aplicación real en Economía/Empresa/Turismo (no genérico)</li>
+              </ul>
+            </div>
+            <div class="text-center">
+              <div class="text-5xl mb-2">🏫</div>
+              <p class="text-gray-600 text-sm">Público · Concertado · Privado</p>
+              <button onclick="scrollToSection('contacto')" class="mt-4 bg-primary hover:bg-secondary text-white px-6 py-3 rounded-full font-semibold transition shadow">
+                Solicitar colaboración
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="p-6 bg-gray-50 rounded-xl shadow">
-<h3 class="font-bold mb-2">Simulador de mercado</h3>
-<p>Los estudiantes toman decisiones de precios y analizan oferta y demanda.</p>
-</div>
+    <!-- LABORATORIO -->
+    <section id="laboratorio" class="py-16 px-4 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-block bg-indigo-100 px-4 py-2 rounded-full mb-4">
+            <span class="text-indigo-700 font-semibold text-sm">🧪 INNOVACIÓN EN EL AULA</span>
+          </div>
+          <h2 class="font-heading text-4xl md:text-5xl text-primary mb-4">Laboratorio de IA Educativa</h2>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Experimentos pedagógicos con resultados: simulaciones, evaluación, IA responsable y proyectos conectados con el mundo real.
+          </p>
+        </div>
 
-<div class="p-6 bg-gray-50 rounded-xl shadow">
-<h3 class="font-bold mb-2">CEO por un día</h3>
-<p>Gestión de una empresa virtual con decisiones estratégicas.</p>
-</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-blue-500">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Simulador de Mercado</h3>
+            <p class="text-gray-600 text-sm mb-4">Oferta/demanda, precios y equilibrio con decisiones y consecuencias.</p>
+            <span class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Economía</span>
+          </div>
 
-<div class="p-6 bg-gray-50 rounded-xl shadow">
-<h3 class="font-bold mb-2">Inversor virtual</h3>
-<p>Aprender finanzas mediante simulaciones de inversión.</p>
-</div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-orange-500">
+            <div class="text-4xl mb-4">🏢</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Empresa virtual</h3>
+            <p class="text-gray-600 text-sm mb-4">Costes, precios, marketing y estrategia con tablero de decisiones.</p>
+            <span class="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">Empresa</span>
+          </div>
 
-</div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-teal-500">
+            <div class="text-4xl mb-4">✈️</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Diseño de producto turístico</h3>
+            <p class="text-gray-600 text-sm mb-4">Segmentación, propuesta de valor, sostenibilidad y marketing.</p>
+            <span class="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-medium">Turismo</span>
+          </div>
 
-</div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-purple-500">
+            <div class="text-4xl mb-4">🧠</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">IA para analizar (no para copiar)</h3>
+            <p class="text-gray-600 text-sm mb-4">Evidencia, revisión, contrastes y mejoras (metacognición).</p>
+            <span class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">IA responsable</span>
+          </div>
 
-</section>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-green-500">
+            <div class="text-4xl mb-4">✅</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Evaluación con rúbricas</h3>
+            <p class="text-gray-600 text-sm mb-4">Criterios claros, evidencias y feedback accionable.</p>
+            <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Evaluación</span>
+          </div>
 
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition border-l-4 border-pink-500">
+            <div class="text-4xl mb-4">🧰</div>
+            <h3 class="font-semibold text-lg text-primary mb-2">Biblioteca de recursos</h3>
+            <p class="text-gray-600 text-sm mb-4">Plantillas, guías, prompts y actividades listas.</p>
+            <span class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Recursos</span>
+          </div>
+        </div>
 
-<footer class="text-center py-10 text-sm opacity-60">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-accent">
+          <h3 class="font-heading text-2xl text-primary mb-6 text-center">Indicadores del laboratorio</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <div class="text-3xl md:text-4xl font-bold text-indigo-600 mb-2">1500+</div>
+              <div class="text-gray-600 text-sm">Prompts de aula</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">50+</div>
+              <div class="text-gray-600 text-sm">Recursos</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">3</div>
+              <div class="text-gray-600 text-sm">Áreas</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-bold text-accent mb-2">∞</div>
+              <div class="text-gray-600 text-sm">Casos de uso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-© Juan Peco
+    <!-- CASOS REALES (clave de “referente”) -->
+    <section id="casos" class="py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-block bg-orange-100 px-4 py-2 rounded-full mb-4">
+            <span class="text-orange-700 font-semibold text-sm">📌 PRUEBA DE MÉTODO</span>
+          </div>
+          <h2 class="font-heading text-4xl md:text-5xl text-primary mb-4">Casos reales (formato replicable)</h2>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Aquí es donde de verdad se nota la diferencia: problema → actividad → evidencia → evaluación.
+          </p>
+        </div>
 
-</footer>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 card-hover">
+            <div class="text-4xl mb-3">🏦</div>
+            <h3 class="font-semibold text-primary mb-2">Economía: oferta/demanda</h3>
+            <p class="text-sm text-gray-700 mb-4">
+              El alumnado no “memoriza curvas”: toma decisiones de precio, observa el equilibrio y justifica con evidencias.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Evidencia: informe + gráfico + reflexión</li>
+              <li>• Evaluación: rúbrica + checklist</li>
+              <li>• IA: crítica/contraste, no respuesta final</li>
+            </ul>
+          </div>
 
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 card-hover">
+            <div class="text-4xl mb-3">🏢</div>
+            <h3 class="font-semibold text-primary mb-2">Empresa: decisiones</h3>
+            <p class="text-sm text-gray-700 mb-4">
+              Simulación con presupuesto: marketing vs I+D vs personal vs equipo. Justificación y resultados.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Evidencia: acta de decisión + KPI</li>
+              <li>• Evaluación: criterios por competencia</li>
+              <li>• IA: revisión de riesgos y alternativas</li>
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 card-hover">
+            <div class="text-4xl mb-3">✈️</div>
+            <h3 class="font-semibold text-primary mb-2">Turismo: producto</h3>
+            <p class="text-sm text-gray-700 mb-4">
+              Diseño de paquete turístico con segmentación, sostenibilidad y plan de comercialización.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>• Evidencia: dossier + pitch</li>
+              <li>• Evaluación: rúbrica + peer review</li>
+              <li>• IA: mejora de propuesta y coherencia</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="proyectos.html" class="inline-flex items-center justify-center bg-primary hover:bg-secondary text-white px-8 py-3 rounded-full font-semibold transition shadow">
+            Ver 15 proyectos IA (listos para anexar)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMPTS (tu sección, pero con enfoque “serio”) -->
+    <section id="prompts" class="py-16 px-4 bg-gray-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-heading text-3xl md:text-4xl text-primary text-center mb-4">Biblioteca de Prompts IA</h2>
+        <p class="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+          Muestra pública (ejemplo). La clave: prompts integrados en secuencias didácticas + evaluación + evidencias.
+        </p>
+
+        <div class="bg-white rounded-2xl p-6 mb-8 shadow">
+          <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex-1 relative">
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input type="text" id="prompt-search" placeholder="Buscar prompts..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" oninput="filterPrompts()">
+            </div>
+
+            <select id="prompt-category" class="px-4 py-3 rounded-xl border border-gray-200 focus:border-primary outline-none bg-white" onchange="filterPrompts()">
+              <option value="">Todas las categorías</option>
+              <option value="economia">📊 Economía</option>
+              <option value="empresa">🏢 Empresa</option>
+              <option value="turismo">✈️ Turismo</option>
+              <option value="educacion">📚 Educación</option>
+            </select>
+
+            <select id="prompt-ai" class="px-4 py-3 rounded-xl border border-gray-200 focus:border-primary outline-none bg-white" onchange="filterPrompts()">
+              <option value="">Todas las IAs</option>
+              <option value="chatgpt">ChatGPT</option>
+              <option value="claude">Claude</option>
+              <option value="gemini">Gemini</option>
+              <option value="perplexity">Perplexity</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="text-center mb-6">
+          <span id="prompt-count" class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">Mostrando 10 de 10</span>
+        </div>
+
+        <div id="prompts-container" class="space-y-4 max-h-[560px] overflow-y-auto scroll-container pr-2"></div>
+
+        <div class="text-center mt-8">
+          <a href="proyectos.html#prompts-pack" class="bg-accent hover:bg-orange-500 text-white px-8 py-3 rounded-full font-medium transition inline-flex items-center justify-center">
+            Ver cómo se usan en proyectos (lo importante)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-16 px-4 gradient-bg text-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-heading text-3xl md:text-4xl text-center mb-4">Contacto para centros</h2>
+        <p class="text-blue-200 text-center mb-12">
+          Si eres equipo directivo o docente, escríbeme para colaborar en proyectos, docencia o formación de claustro.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+              <h3 class="font-semibold text-lg mb-4">Información</h3>
+              <div class="space-y-4">
+                <a href="mailto:hola@juanpeco.es" class="flex items-center gap-4 hover:text-accent transition">
+                  <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-sm text-blue-200">Email</div>
+                    <div class="font-medium">hola@juanpeco.es</div>
+                  </div>
+                </a>
+
+                <a href="tel:+34647033746" class="flex items-center gap-4 hover:text-accent transition">
+                  <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-sm text-blue-200">Teléfono</div>
+                    <div class="font-medium">647 033 746</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+              <h3 class="font-semibold text-lg mb-4">Redes</h3>
+              <div class="flex gap-4">
+                <!-- Cambia estas URLs a las reales -->
+                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition" aria-label="LinkedIn">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition" aria-label="Instagram">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-8 text-gray-800">
+            <h3 class="font-semibold text-lg mb-6 text-primary">Formulario</h3>
+            <form id="contact-form" onsubmit="handleSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Nombre del centro</label>
+                <input name="centro" type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="IES / Colegio...">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Tipo de centro</label>
+                <select name="tipo" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary outline-none bg-white">
+                  <option value="">Seleccionar...</option>
+                  <option value="publico">Público</option>
+                  <option value="concertado">Concertado</option>
+                  <option value="privado">Privado</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Email de contacto</label>
+                <input name="email" type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="email@centro.es">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Mensaje</label>
+                <textarea name="mensaje" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition resize-none" placeholder="Qué necesitas (docencia, proyecto, formación claustro, etc.)"></textarea>
+              </div>
+
+              <button type="submit" class="w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg font-semibold transition">
+                Enviar mensaje
+              </button>
+
+              <p class="text-xs text-gray-500">
+                Nota: este formulario ahora mismo solo muestra confirmación. Si quieres que envíe emails de verdad, hay que conectar un servicio (Formspree / Google Forms / etc.).
+              </p>
+            </form>
+
+            <div id="form-success" class="hidden text-center py-10">
+              <div class="text-5xl mb-4">✅</div>
+              <h4 class="font-semibold text-primary text-lg">¡Mensaje enviado!</h4>
+              <p class="text-gray-500 text-sm">Te responderé lo antes posible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-8 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm">
+          <a href="index.html" class="text-gray-400 hover:text-accent transition">Inicio</a>
+          <span class="text-gray-600">•</span>
+          <a href="proyectos.html" class="text-gray-400 hover:text-accent transition">Proyectos</a>
+          <span class="text-gray-600">•</span>
+          <a href="blog.html" class="text-gray-400 hover:text-accent transition">Blog</a>
+          <span class="text-gray-600">•</span>
+          <a href="mailto:hola@juanpeco.es" class="text-gray-400 hover:text-accent transition">hola@juanpeco.es</a>
+        </div>
+        <p class="text-gray-500 text-sm">© 2026 Juan Peco</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL PROMPTS -->
+  <div id="prompt-modal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closePromptModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-[80%] overflow-y-auto shadow-2xl">
+      <button onclick="closePromptModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" aria-label="Cerrar">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // Navegación
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Prompts: muestra pública (10). El “referente” no es mostrar 1500, es mostrar cómo se aplican.
+    const promptsDatabase = [
+      { id: 1, title: "Análisis de elasticidad precio-demanda", category: "economia", ai: "chatgpt", level: "intermedio", prompt: "Actúa como economista. Con estos datos [DATOS], calcula elasticidad precio-demanda. Devuelve: 1) cálculo paso a paso, 2) interpretación, 3) recomendaciones de pricing, 4) gráfico descrito, 5) errores típicos del alumnado." },
+      { id: 2, title: "Caso práctico de PIB (Bachillerato)", category: "economia", ai: "gemini", level: "básico", prompt: "Crea 3 ejercicios de PIB con datos realistas. Incluye enunciado, preguntas graduadas y soluciones comentadas. Añade 1 pregunta de interpretación económica por ejercicio." },
+      { id: 3, title: "Simulación de política monetaria", category: "economia", ai: "claude", level: "avanzado", prompt: "Eres presidente del Banco Central. Con PIB [X], inflación [Y] y paro [Z], decide tipos y medidas. Justifica con lógica económica y riesgos. Incluye comunicado para prensa." },
+
+      { id: 4, title: "DAFO + CAME (empresa)", category: "empresa", ai: "chatgpt", level: "intermedio", prompt: "Construye DAFO para [EMPRESA] y transforma en CAME con 6 acciones concretas priorizadas (impacto/esfuerzo). Cierra con 3 KPIs para seguimiento." },
+      { id: 5, title: "Ratios financieros con diagnóstico", category: "empresa", ai: "chatgpt", level: "avanzado", prompt: "Con [BALANCE] y [PYG], calcula ratios clave y emite diagnóstico. Señala red flags y 5 acciones de mejora con impacto estimado." },
+
+      { id: 6, title: "Producto turístico con segmentación", category: "turismo", ai: "chatgpt", level: "intermedio", prompt: "Diseña un producto turístico para [DESTINO] y [SEGMENTO]. Incluye itinerario, propuesta de valor, sostenibilidad, pricing, y plan de comercialización." },
+      { id: 7, title: "Atención al cliente (turismo)", category: "turismo", ai: "claude", level: "intermedio", prompt: "Crea un protocolo de atención al cliente para [HOTEL/AGENCIA]. Incluye guiones, gestión de quejas, escalado y checklist de calidad." },
+
+      { id: 8, title: "Rúbrica competencial", category: "educacion", ai: "chatgpt", level: "intermedio", prompt: "Crea rúbrica para [ACTIVIDAD] en [MATERIA] con 4 criterios y 4 niveles. Incluye versión alumnado + versión docente, y ejemplos de evidencias." },
+      { id: 9, title: "Situación de aprendizaje (LOMLOE)", category: "educacion", ai: "chatgpt", level: "avanzado", prompt: "Diseña una situación de aprendizaje LOMLOE sobre [TEMA] para [CURSO]. Incluye competencias específicas, criterios, saberes, actividades, producto final y evaluación." },
+      { id: 10, title: "Protocolo IA responsable", category: "educacion", ai: "claude", level: "avanzado", prompt: "Crea un protocolo de uso responsable de IA para el aula: reglas, ejemplos permitidos/no permitidos, verificación, citación, y cómo evaluar el proceso (no solo el resultado)." }
+    ];
+
+    let displayedPrompts = 10;
+    let filteredPrompts = [...promptsDatabase];
+
+    function getCategoryColor(cat) {
+      return ({ economia:'blue', empresa:'orange', turismo:'teal', educacion:'indigo' }[cat] || 'gray');
+    }
+    function getCategoryEmoji(cat) {
+      return ({ economia:'📊', empresa:'🏢', turismo:'✈️', educacion:'📚' }[cat] || '📄');
+    }
+    function getAIIcon(ai) {
+      return ({ chatgpt:'🟢', claude:'🟠', gemini:'🔵', perplexity:'🟣' }[ai] || '⚪');
+    }
+    function cap(str){ return str.charAt(0).toUpperCase() + str.slice(1); }
+
+    function renderPrompts() {
+      const container = document.getElementById('prompts-container');
+      const promptsToShow = filteredPrompts.slice(0, displayedPrompts);
+
+      container.innerHTML = promptsToShow.map(p => `
+        <div class="prompt-card bg-white rounded-xl p-5 shadow-sm cursor-pointer" onclick="openPromptModal(${p.id})" role="button" tabindex="0">
+          <div class="flex justify-between items-start gap-4">
+            <div class="flex-1">
+              <h4 class="font-semibold text-primary mb-2">${p.title}</h4>
+              <p class="text-sm text-gray-500 line-clamp-2">${p.prompt.substring(0, 160)}...</p>
+            </div>
+            <div class="flex flex-col gap-2 flex-shrink-0">
+              <span class="bg-${getCategoryColor(p.category)}-100 text-${getCategoryColor(p.category)}-700 px-2 py-1 rounded text-xs text-center">
+                ${getCategoryEmoji(p.category)} ${cap(p.category)}
+              </span>
+              <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs text-center">
+                ${getAIIcon(p.ai)} ${p.ai}
+              </span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('prompt-count').textContent = `Mostrando ${Math.min(displayedPrompts, filteredPrompts.length)} de ${filteredPrompts.length}`;
+    }
+
+    function filterPrompts() {
+      const search = document.getElementById('prompt-search').value.toLowerCase();
+      const category = document.getElementById('prompt-category').value;
+      const ai = document.getElementById('prompt-ai').value;
+
+      filteredPrompts = promptsDatabase.filter(p => {
+        const matchSearch = p.title.toLowerCase().includes(search) || p.prompt.toLowerCase().includes(search);
+        const matchCategory = !category || p.category === category;
+        const matchAI = !ai || p.ai === ai;
+        return matchSearch && matchCategory && matchAI;
+      });
+
+      displayedPrompts = 10;
+      renderPrompts();
+    }
+
+    function openPromptModal(id) {
+      const prompt = promptsDatabase.find(p => p.id === id);
+      if (!prompt) return;
+
+      document.getElementById('modal-content').innerHTML = `
+        <div class="mb-4 flex flex-wrap gap-2">
+          <span class="bg-${getCategoryColor(prompt.category)}-100 text-${getCategoryColor(prompt.category)}-700 px-3 py-1 rounded-full text-sm">
+            ${getCategoryEmoji(prompt.category)} ${cap(prompt.category)}
+          </span>
+          <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+            ${getAIIcon(prompt.ai)} ${prompt.ai}
+          </span>
+          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">📈 ${cap(prompt.level)}</span>
+        </div>
+        <h3 class="font-heading text-2xl text-primary mb-4">${prompt.title}</h3>
+        <div class="bg-gray-50 rounded-xl p-4 mb-4">
+          <p class="text-sm text-gray-700 whitespace-pre-wrap" id="prompt-text">${prompt.prompt}</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="copyPrompt()" class="flex-1 bg-primary hover:bg-secondary text-white py-3 rounded-lg font-medium transition">
+            Copiar prompt
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-4 text-center">Tip: rellena los campos entre [CORCHETES] antes de usar.</p>
+      `;
+      document.getElementById('prompt-modal').classList.remove('hidden');
+    }
+
+    function closePromptModal() {
+      document.getElementById('prompt-modal').classList.add('hidden');
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('prompt-text')?.textContent || '';
+      navigator.clipboard.writeText(text);
+    }
+
+    // Form: demo (solo confirma)
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPrompts();
+    });
+  </script>
 </body>
 </html>
