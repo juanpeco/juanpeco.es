@@ -1,20 +1,65 @@
+/* Base */
+:root{
+  --max: 1100px;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 body{
-font-family: Arial;
-max-width:900px;
-margin:auto;
-padding:20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background: #f9fafb; /* gris muy suave */
+  color: #111827;
 }
 
+/* Contenedor opcional si algún día haces páginas sin Tailwind */
+.container{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Enlaces */
+a{
+  color: inherit;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+/* Navegación (sin “pelear” con Tailwind) */
 nav a{
-margin-right:15px;
-text-decoration:none;
+  margin-right: 12px;
+  text-decoration: none;
+}
+nav a:hover{
+  text-decoration: underline;
 }
 
+/* Header/Footer genéricos */
 header{
-margin-bottom:30px;
+  margin-bottom: 24px;
 }
 
 footer{
-margin-top:40px;
-opacity:0.6;
+  margin-top: 48px;
+  opacity: 0.85;
+}
+
+/* Imágenes */
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accesibilidad */
+:focus-visible{
+  outline: 2px solid #ed8936;
+  outline-offset: 2px;
 }
