@@ -1,70 +1,79 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blog — IA Educativa | Juan Peco</title>
-  <meta name="description" content="Artículos sobre IA educativa aplicada a Economía, Empresa y Turismo. Casos, rúbricas, protocolos y recursos." />
+  <title>Recursos y Artículos · Juan Peco</title>
+  <meta name="description" content="Artículos y recursos educativos sobre economía, empresa, turismo e IA educativa." />
   <link rel="stylesheet" href="css/estilos.css" />
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    .font-heading { font-family: 'Playfair Display', serif; }
-    .font-body { font-family: 'Inter', sans-serif; }
-    .card-hover { transition: all .25s ease; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,0,0,.08); }
-  </style>
 </head>
-<body class="font-body bg-gray-50 text-gray-900">
-  <nav class="bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="index.html" class="font-heading text-xl font-bold text-indigo-900">Juan Peco</a>
-      <div class="flex gap-5 text-sm font-medium">
-        <a href="index.html" class="text-gray-600 hover:text-indigo-900">Inicio</a>
-        <a href="proyectos.html" class="text-gray-600 hover:text-indigo-900">Proyectos</a>
-        <a href="blog.html" class="text-indigo-900 font-semibold">Blog</a>
-        <a href="contacto.html" class="text-gray-600 hover:text-indigo-900">Contacto</a>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <div class="logo">JP</div>
+        <div class="brand-txt">
+          <div class="mini">Juan Peco</div>
+          <div class="name">Recursos y Artículos</div>
+        </div>
+      </a>
+
+      <nav aria-label="Navegación">
+        <a href="index.html#sobre-mi">Sobre mí</a>
+        <a href="index.html#innovacion">Innovación</a>
+        <a href="index.html#laboratorio">Laboratorio IA</a>
+        <a href="index.html#prompts">Prompts IA</a>
+        <a href="contacto.html">Contactar</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Artículos y Recursos</h2>
+        <p>Listado completo</p>
+      </div>
+
+      <div class="card card-pad">
+        <div class="prompt-controls" style="margin-bottom:12px;">
+          <input class="input" id="artSearch" placeholder="Buscar artículos..." />
+          <select id="artCategory">
+            <option value="Todas">Todas las categorías</option>
+            <option value="Economía">Economía</option>
+            <option value="Empresa">Empresa</option>
+            <option value="Turismo">Turismo</option>
+            <option value="Finanzas">Finanzas</option>
+            <option value="IA Educativa">IA Educativa</option>
+          </select>
+          <span class="smallnote" id="artInfo">Mostrando 0 de 0 artículos</span>
+        </div>
+
+        <div class="grid-3" id="articulosList" aria-live="polite"></div>
+
+        <hr class="sep" />
+
+        <div class="smallnote">
+          Nota: ahora los 30 artículos apuntan a <code>/articulos/01.html</code> ... <code>/articulos/30.html</code>.
+          Si no existen todavía, crea esos ficheros o cambia la URL en <code>js/app.js</code>.
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html">Volver a inicio</a>
+        <a class="btn primary" href="index.html#contactar">Contactar</a>
       </div>
     </div>
-  </nav>
-
-  <main class="max-w-6xl mx-auto px-4 py-12">
-    <header class="text-center mb-10">
-      <h1 class="font-heading text-4xl md:text-5xl text-indigo-900 mb-3">Blog de IA Educativa</h1>
-      <p class="text-gray-600 max-w-3xl mx-auto">
-        Artículos que demuestran método (no postureo): actividad + evidencia + evaluación.
-      </p>
-    </header>
-
-    <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- ✅ Este existe en tu repo -->
-      <a href="articulos/simulador-mercado.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Economía · Simulación</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Simulador de mercado: oferta, demanda y decisiones</h2>
-        <p class="text-gray-700 text-sm">Actividad replicable: decisiones, resultados y evaluación por evidencias.</p>
-      </a>
-
-      <!-- Plantillas: crea los HTML en /articulos y enlaza aquí -->
-      <a href="articulos/protocolo-ia-responsable.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">IA responsable</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Protocolo IA en aula: permitido / no permitido</h2>
-        <p class="text-gray-700 text-sm">Reglas claras, citación, verificación y cómo evaluar el proceso.</p>
-      </a>
-
-      <a href="articulos/empresa-virtual-kpi.html" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Empresa · KPI</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Empresa virtual: tablero de decisiones + KPI + rúbrica</h2>
-        <p class="text-gray-700 text-sm">Cómo montar una simulación con evidencias y defensa oral.</p>
-      </a>
-    </section>
   </main>
 
-  <footer class="bg-gray-900 text-white py-8 mt-12">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
-      © 2026 Juan Peco · <a class="hover:text-orange-400" href="contacto.html">Contacto</a>
+  <footer class="footer">
+    <div class="container">
+      <div>juanpeco.es • <a href="mailto:hola@juanpeco.es">hola@juanpeco.es</a></div>
+      <div style="margin-top:6px;">© 2024 Juan Peco - Docente Especializado en Economía, Empresa y Turismo</div>
     </div>
   </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
