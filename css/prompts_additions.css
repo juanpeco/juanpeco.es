@@ -1,0 +1,11 @@
+
+/* Prompt library additions */
+.prompt-card{border:1px solid rgba(0,0,0,.08); border-radius:14px; padding:14px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05); margin-bottom:12px;}
+.prompt-head{display:flex; gap:12px; justify-content:space-between; align-items:flex-start;}
+.prompt-title h3{margin:0 0 6px 0; font-size:16px; line-height:1.2;}
+.prompt-badges{display:flex; gap:8px; flex-wrap:wrap;}
+.prompt-actions{display:flex; gap:8px; flex-wrap:wrap;}
+.btn.small{padding:8px 10px; font-size:13px;}
+.prompt-body{margin-top:12px;}
+.prompt-text{white-space:pre-wrap; margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:13px; line-height:1.45; background:rgba(0,0,0,.03); padding:12px; border-radius:12px;}
+.prompt-pager{display:flex; gap:10px; justify-content:flex-start; flex-wrap:wrap; margin-top:12px;}
