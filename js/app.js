@@ -1,226 +1,160 @@
-// JuanPeco.es - Prompt Library (client-side)
-// Loads prompts from /js/prompts_1500.json and renders with search + filters + pagination.
+(async function () {
+  const elList = document.getElementById("promptList");
+  const elInfo = document.getElementById("promptInfo");
+  const elSearch = document.getElementById("promptSearch");
+  const elCat = document.getElementById("promptCategory");
+  const elAI = document.getElementById("promptAI");
 
-(function () {
-  const PAGE_SIZE = 30;
+  if (!elList || !elInfo || !elSearch || !elCat || !elAI) return;
 
-  const $ = (sel) => document.querySelector(sel);
+  const escapeHtml = (s) =>
+    (s ?? "").toString()
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, (m) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[m]));
-  }
-
-  function uniq(arr) {
-    return Array.from(new Set(arr.filter(Boolean)));
-  }
+  let data = [];
+  let filtered = [];
 
   function normalize(s) {
-    return (s || "").toString().trim().toLowerCase();
+    return (s ?? "").toString().toLowerCase().trim();
   }
 
-  function buildOptions(selectEl, values, keepFirst = true) {
-    const first = keepFirst ? selectEl.querySelector("option") : null;
-    selectEl.innerHTML = "";
-    if (first) selectEl.appendChild(first);
-    values.forEach(v => {
-      const opt = document.createElement("option");
-      opt.value = v;
-      opt.textContent = v;
-      selectEl.appendChild(opt);
-    });
-  }
+  function buildOptionsFromData() {
+    // Rellenar categorías/IAs reales sin romper tus opciones iniciales
+    const cats = [...new Set(data.map(d => d.category).filter(Boolean))].sort();
+    const ais = [...new Set(data.map(d => d.ai).filter(Boolean))].sort();
 
-  function promptMatches(p, term) {
-    if (!term) return true;
-    const t = normalize(term);
-    const hay = normalize([p.title, p.category, p.subcategory, p.sector, p.ai, p.text].join(" "));
-    return hay.includes(t);
-  }
-
-  function renderCard(p) {
-    const badges = [
-      p.category ? `<span class="badge">${escapeHtml(p.category)}</span>` : "",
-      p.subcategory ? `<span class="badge">${escapeHtml(p.subcategory)}</span>` : "",
-      p.ai ? `<span class="badge">${escapeHtml(p.ai)}</span>` : ""
-    ].filter(Boolean).join(" ");
-
-    const textSafe = escapeHtml(p.text || "");
-
-    return `
-      <article class="prompt-card">
-        <div class="prompt-head">
-          <div class="prompt-title">
-            <h3>${escapeHtml(p.title || "Prompt")}</h3>
-            <div class="prompt-badges">${badges}</div>
-          </div>
-          <div class="prompt-actions">
-            <button class="btn small" data-action="toggle">Ver</button>
-            <button class="btn small" data-action="copy">Copiar</button>
-          </div>
-        </div>
-        <div class="prompt-body" hidden>
-          <pre class="prompt-text">${textSafe}</pre>
-        </div>
-      </article>
-    `;
-  }
-
-  async function loadPrompts() {
-    const res = await fetch("js/prompts_1500.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("No se pudo cargar js/prompts_1500.json");
-    return await res.json();
-  }
-
-  document.addEventListener("DOMContentLoaded", async () => {
-    const listEl = $("#promptList");
-    const infoEl = $("#promptInfo");
-    const searchEl = $("#promptSearch");
-    const catEl = $("#promptCategory");
-    const aiEl = $("#promptAI");
-
-    if (!listEl || !infoEl || !searchEl || !catEl || !aiEl) return;
-
-    let prompts = [];
-    try {
-      prompts = await loadPrompts();
-    } catch (e) {
-      listEl.innerHTML = `<div class="smallnote">Error cargando la biblioteca: ${escapeHtml(e.message)}</div>`;
-      return;
-    }
-
-    // Populate dynamic filters from data (keeps "Todas..." first option).
-    const categories = uniq(prompts.map(p => p.category)).sort((a,b)=>a.localeCompare(b,'es'));
-    const ais = uniq(prompts.map(p => p.ai)).sort((a,b)=>a.localeCompare(b,'es'));
-    buildOptions(catEl, categories, true);
-    buildOptions(aiEl, ais, true);
-
-    let state = {
-      term: "",
-      category: "Todas",
-      ai: "Todas",
-      page: 1
-    };
-
-    // Create pager UI (below list)
-    const pager = document.createElement("div");
-    pager.className = "prompt-pager";
-    pager.innerHTML = `
-      <button class="btn" id="promptMore" type="button">Cargar más</button>
-      <button class="btn" id="promptTop" type="button">Volver arriba</button>
-    `;
-    listEl.insertAdjacentElement("afterend", pager);
-
-    const moreBtn = $("#promptMore");
-    const topBtn = $("#promptTop");
-
-    function getFiltered() {
-      return prompts.filter(p => {
-        if (state.category !== "Todas" && p.category !== state.category) return false;
-        if (state.ai !== "Todas" && p.ai !== state.ai) return false;
-        if (!promptMatches(p, state.term)) return false;
-        return true;
-      });
-    }
-
-    function render(reset = false) {
-      const filtered = getFiltered();
-      const total = filtered.length;
-      const showing = Math.min(state.page * PAGE_SIZE, total);
-
-      infoEl.textContent = `Mostrando ${showing} de ${total} prompts`;
-
-      if (reset) listEl.innerHTML = "";
-
-      const slice = filtered.slice(0, showing);
-      listEl.innerHTML = slice.map(renderCard).join("");
-
-      // Enable/disable "Cargar más"
-      if (showing >= total) {
-        moreBtn.disabled = true;
-        moreBtn.textContent = "No hay más";
-      } else {
-        moreBtn.disabled = false;
-        moreBtn.textContent = "Cargar más";
+    // Si tu HTML ya trae opciones base, añadimos las que falten.
+    const catValues = new Set([...elCat.options].map(o => o.value));
+    cats.forEach(c => {
+      if (!catValues.has(c)) {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c;
+        elCat.appendChild(opt);
       }
-    }
-
-    function resetAndRender() {
-      state.page = 1;
-      render(true);
-    }
-
-    // Events
-    searchEl.addEventListener("input", () => {
-      state.term = searchEl.value || "";
-      resetAndRender();
     });
 
-    catEl.addEventListener("change", () => {
-      state.category = catEl.value;
-      resetAndRender();
-    });
-
-    aiEl.addEventListener("change", () => {
-      state.ai = aiEl.value;
-      resetAndRender();
-    });
-
-    moreBtn.addEventListener("click", () => {
-      state.page += 1;
-      render(true);
-    });
-
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Delegate card actions
-    listEl.addEventListener("click", async (ev) => {
-      const btn = ev.target.closest("button[data-action]");
-      if (!btn) return;
-      const card = ev.target.closest(".prompt-card");
-      if (!card) return;
-
-      const action = btn.getAttribute("data-action");
-      const body = card.querySelector(".prompt-body");
-      const pre = card.querySelector(".prompt-text");
-      const text = pre ? pre.textContent : "";
-
-      if (action === "toggle") {
-        const isHidden = body.hasAttribute("hidden");
-        if (isHidden) body.removeAttribute("hidden");
-        else body.setAttribute("hidden", "");
-        btn.textContent = isHidden ? "Ocultar" : "Ver";
+    const aiValues = new Set([...elAI.options].map(o => o.value));
+    ais.forEach(a => {
+      if (!aiValues.has(a)) {
+        const opt = document.createElement("option");
+        opt.value = a;
+        opt.textContent = a;
+        elAI.appendChild(opt);
       }
+    });
+  }
 
-      if (action === "copy") {
+  function applyFilters() {
+    const q = normalize(elSearch.value);
+    const cat = elCat.value;
+    const ai = elAI.value;
+
+    filtered = data.filter(p => {
+      const okCat = (cat === "Todas") || (p.category === cat);
+      const okAI = (ai === "Todas") || (p.ai === ai);
+
+      if (!okCat || !okAI) return false;
+
+      if (!q) return true;
+
+      const hay = [
+        p.title, p.prompt, p.category, p.ai, p.sector, p.subcat, p.level
+      ].map(normalize).join(" | ");
+
+      return hay.includes(q);
+    });
+
+    render();
+  }
+
+  function render() {
+    elInfo.textContent = `Mostrando ${filtered.length} de ${data.length} prompts`;
+    elList.innerHTML = filtered.slice(0, 200).map(p => {
+      const meta = `
+        <span class="badge">${escapeHtml(p.category || "General")}</span>
+        <span class="badge">${escapeHtml(p.ai || "chatgpt")}</span>
+        ${p.level ? `<span class="badge">${escapeHtml(p.level)}</span>` : ``}
+      `;
+
+      return `
+        <div class="prompt-card">
+          <div class="prompt-head">
+            <p class="prompt-title">${escapeHtml(p.title || "Prompt")}</p>
+            <div class="prompt-meta">${meta}</div>
+            <button class="btn copybtn" data-copy="${escapeHtml(p.prompt)}">Copiar</button>
+          </div>
+          <div class="prompt-body">${escapeHtml(p.prompt)}</div>
+        </div>
+      `;
+    }).join("");
+
+    // aviso si hay más de 200 para no petar el DOM
+    if (filtered.length > 200) {
+      elList.insertAdjacentHTML("beforeend",
+        `<div class="smallnote">Mostrando 200 por rendimiento. Usa el buscador/filtros para acotar.</div>`
+      );
+    }
+
+    // listeners copiar
+    [...elList.querySelectorAll("button[data-copy]")].forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const txt = btn.getAttribute("data-copy") || "";
         try {
-          await navigator.clipboard.writeText(text);
+          await navigator.clipboard.writeText(txt);
           const old = btn.textContent;
-          btn.textContent = "Copiado";
+          btn.textContent = "Copiado ✅";
           setTimeout(() => (btn.textContent = old), 900);
         } catch {
-          // Fallback
-          const ta = document.createElement("textarea");
-          ta.value = text;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand("copy");
-          ta.remove();
-          const old = btn.textContent;
-          btn.textContent = "Copiado";
-          setTimeout(() => (btn.textContent = old), 900);
+          alert("No se pudo copiar. Prueba manualmente.");
         }
-      }
+      });
     });
+  }
 
-    // First render
-    render(true);
-  });
+  try {
+    const res = await fetch("js/prompts_1500.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    data = await res.json();
+
+    // normaliza estructura mínima por si cambian campos
+    data = (Array.isArray(data) ? data : []).map((p, i) => ({
+      id: p.id ?? (i + 1),
+      title: p.title ?? "Prompt",
+      category: p.category ?? "General",
+      ai: p.ai ?? "chatgpt",
+      level: p.level ?? "",
+      sector: p.sector ?? "",
+      subcat: p.subcat ?? "",
+      prompt: p.prompt ?? ""
+    })).filter(p => p.prompt);
+
+    buildOptionsFromData();
+    filtered = data;
+    applyFilters();
+
+    elSearch.addEventListener("input", applyFilters);
+    elCat.addEventListener("change", applyFilters);
+    elAI.addEventListener("change", applyFilters);
+
+    console.log("Biblioteca cargada. Usa el buscador y los filtros para encontrar prompts rápidamente.");
+  } catch (e) {
+    elInfo.textContent = "Mostrando 0 de 0 prompts";
+    elList.innerHTML = `
+      <div class="prompt-card">
+        <p class="prompt-title">Error cargando la biblioteca</p>
+        <div class="prompt-body">
+          No se pudo cargar <strong>js/prompts_1500.json</strong>.
+          <br><br>
+          Solución: sube el archivo al repo en la ruta exacta:
+          <br><strong>/js/prompts_1500.json</strong>
+        </div>
+      </div>
+    `;
+    console.error(e);
+  }
 })();
