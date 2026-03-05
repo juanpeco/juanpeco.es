@@ -1,1 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto · Juan Peco</title>
+  <meta name="description" content="Formulario de contacto para centros educativos y colaboraciones." />
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
 
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <div class="logo">JP</div>
+        <div class="brand-txt">
+          <div class="mini">Juan Peco</div>
+          <div class="name">Contacto</div>
+        </div>
+      </a>
+
+      <nav aria-label="Navegación">
+        <a href="index.html#sobre-mi">Sobre mí</a>
+        <a href="blog.html">Recursos</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="index.html#prompts">Prompts IA</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contactar</h2>
+        <p>Centros educativos y colaboraciones</p>
+      </div>
+
+      <div class="contact">
+        <div class="info">
+          <h3>Información de contacto</h3>
+          <p><strong>Email:</strong> hola@juanpeco.es</p>
+          <p><strong>Teléfono:</strong> 647 033 746</p>
+          <p><strong>Redes sociales:</strong> (añade enlaces)</p>
+
+          <hr class="sep" />
+
+          <p class="smallnote">
+            Sugerencia: si quieres que el formulario envíe emails sin backend, lo conecto a Formspree/Netlify Forms o a un pequeño endpoint.
+          </p>
+        </div>
+
+        <form class="form" action="#" method="post" onsubmit="alert('Formulario de ejemplo. Conecto mailto o backend cuando quieras.'); return false;">
+          <div class="row">
+            <input class="input" name="centro" placeholder="Nombre del centro" />
+            <select name="tipo">
+              <option value="">Tipo de centro</option>
+              <option>IES</option>
+              <option>Colegio</option>
+              <option>Centro FP</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="row">
+            <input class="input" name="email" placeholder="Email de contacto" />
+            <input class="input" name="persona" placeholder="Persona de contacto" />
+          </div>
+          <textarea class="input" name="mensaje" placeholder="Mensaje: ¿En qué puedo ayudarle?"></textarea>
+
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn primary" type="submit">Enviar mensaje</button>
+            <a class="btn" href="mailto:hola@juanpeco.es?subject=Contacto%20desde%20juanpeco.es">Enviar por email</a>
+            <a class="btn" href="index.html">Volver a inicio</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>juanpeco.es • <a href="mailto:hola@juanpeco.es">hola@juanpeco.es</a></div>
+      <div style="margin-top:6px;">© 2024 Juan Peco - Docente Especializado en Economía, Empresa y Turismo</div>
+    </div>
+  </footer>
+</body>
+</html>
