@@ -6,7 +6,6 @@
   <title>Juan Peco - Docente</title>
   <meta name="description" content="Docente especializado en Economía, Empresa y Turismo. IA educativa, recursos interactivos y biblioteca de prompts." />
   <link rel="stylesheet" href="css/estilos.css" />
-  <link rel="stylesheet" href="prompts_ui.css">
 </head>
 <body>
 
@@ -499,22 +498,41 @@
     </section>
 
     <!-- PROMPTS -->
-<section id="prompts" class="section">
-  <h2>Biblioteca de Prompts IA</h2>
-  <p>Más de <strong>1500</strong> prompts profesionales</p>
+    <section class="section" id="prompts">
+      <div class="container">
+        <div class="section-title">
+          <h2>Biblioteca de Prompts IA</h2>
+          <p>Más de 1500 prompts profesionales</p>
+        </div>
 
-  <div class="prompts-controls" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
-    <input id="promptSearch" type="search" placeholder="Buscar prompts..." style="flex:1; min-width:240px; padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,.12);">
-    <select id="categoryFilter" style="padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,.12);"></select>
-    <select id="aiFilter" style="padding:10px 12px; border-radius:12px; border:1px solid rgba(0,0,0,.12);"></select>
-  </div>
+        <div class="card card-pad prompts">
+          <div class="prompt-controls">
+            <input class="input" id="promptSearch" placeholder="Buscar prompts..." />
+            <select id="promptCategory">
+              <option value="Todas">Todas las categorías</option>
+              <option value="Economía">Economía</option>
+              <option value="Empresa">Empresa</option>
+              <option value="Contabilidad">Contabilidad</option>
+              <option value="Turismo">Turismo</option>
+            </select>
+            <select id="promptAI">
+              <option value="Todas">Todas las IAs</option>
+              <option value="chatgpt">chatgpt</option>
+              <option value="claude">claude</option>
+              <option value="gemini">gemini</option>
+              <option value="perplexity">perplexity</option>
+            </select>
+            <span class="smallnote" id="promptInfo">Mostrando 0 de 0 prompts</span>
+          </div>
 
-  <div style="margin-top:10px; opacity:.75;">
-    Mostrando <span id="promptCount">0</span> de <span id="promptTotal">0</span> prompts
-  </div>
+          <div class="prompt-list" id="promptList" aria-live="polite"></div>
 
-  <div id="promptGrid"></div>
-</section>
+          <div class="smallnote">
+            Si quieres que aquí aparezcan tus 1500 prompts reales, pásamelos en CSV/JSON y te lo dejo automático.
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACTO -->
     <section class="section" id="contactar">
@@ -573,8 +591,5 @@
   </main>
 
   <script src="js/app.js"></script>
-  <script src="prompts.js"></script>
 </body>
 </html>
-
-
