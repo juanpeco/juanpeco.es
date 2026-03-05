@@ -1,73 +1,95 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Proyectos IA Educativa — Juan Peco</title>
-  <meta name="description" content="Proyectos de IA educativa aplicados a Economía, Empresa y Turismo. Actividad, evidencias y evaluación." />
+  <title>Proyectos · Juan Peco</title>
+  <meta name="description" content="Proyectos educativos con IA, simulaciones y recursos interactivos." />
   <link rel="stylesheet" href="css/estilos.css" />
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    .font-heading { font-family: 'Playfair Display', serif; }
-    .font-body { font-family: 'Inter', sans-serif; }
-    .card-hover { transition: all .25s ease; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,0,0,.08); }
-  </style>
 </head>
-<body class="font-body bg-gray-50 text-gray-900">
-  <nav class="bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="index.html" class="font-heading text-xl font-bold text-indigo-900">Juan Peco</a>
-      <div class="flex gap-5 text-sm font-medium">
-        <a href="index.html" class="text-gray-600 hover:text-indigo-900">Inicio</a>
-        <a href="proyectos.html" class="text-indigo-900 font-semibold">Proyectos</a>
-        <a href="blog.html" class="text-gray-600 hover:text-indigo-900">Blog</a>
-        <a href="contacto.html" class="text-gray-600 hover:text-indigo-900">Contacto</a>
-      </div>
-    </div>
-  </nav>
+<body>
 
-  <main class="max-w-6xl mx-auto px-4 py-12">
-    <header class="text-center mb-10">
-      <h1 class="font-heading text-4xl md:text-5xl text-indigo-900 mb-3">Proyectos de IA educativa</h1>
-      <p class="text-gray-600 max-w-3xl mx-auto">
-        Lista clara y replicable. La credibilidad viene de describir: objetivo → actividad → evidencias → evaluación.
-      </p>
-    </header>
-
-    <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Economía</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Mercado en vivo</h2>
-        <p class="text-sm text-gray-700">Simulación oferta/demanda con decisiones, informe y rúbrica.</p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Empresa</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">CEO por un día</h2>
-        <p class="text-sm text-gray-700">Presupuesto, KPI y defensa. IA para revisar riesgos y alternativas.</p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-        <div class="text-sm text-gray-500 mb-2">Turismo</div>
-        <h2 class="font-heading text-2xl text-indigo-900 mb-2">Producto turístico</h2>
-        <p class="text-sm text-gray-700">Segmentación, propuesta de valor, sostenibilidad y marketing.</p>
-      </div>
-    </section>
-
-    <div class="mt-10 text-center">
-      <a href="contacto.html" class="inline-flex items-center justify-center bg-indigo-900 hover:bg-indigo-800 text-white px-8 py-3 rounded-full font-semibold transition">
-        Proponer colaboración
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <div class="logo">JP</div>
+        <div class="brand-txt">
+          <div class="mini">Juan Peco</div>
+          <div class="name">Proyectos</div>
+        </div>
       </a>
+
+      <nav aria-label="Navegación">
+        <a href="index.html#laboratorio">Laboratorio IA</a>
+        <a href="index.html#metodologia">Metodología</a>
+        <a href="blog.html">Recursos</a>
+        <a href="contacto.html">Contactar</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Proyectos Educativos con IA</h2>
+        <p>Aplicación práctica</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="item">
+          <div class="icon">📊</div>
+          <h3>Simulador de Mercado</h3>
+          <p>Oferta/demanda, precios y equilibrio en tiempo real.</p>
+          <div style="margin-top:10px"><span class="badge">Economía</span> <span class="badge">Bachillerato</span></div>
+        </div>
+
+        <div class="item">
+          <div class="icon">🏢</div>
+          <h3>CEO por un día</h3>
+          <p>Gestión de empresa virtual con decisiones estratégicas.</p>
+          <div style="margin-top:10px"><span class="badge">Empresa</span> <span class="badge">FP</span></div>
+        </div>
+
+        <div class="item">
+          <div class="icon">💰</div>
+          <h3>Inversor Virtual</h3>
+          <p>Aprendizaje de finanzas con simulación de inversión.</p>
+          <div style="margin-top:10px"><span class="badge">Finanzas</span></div>
+        </div>
+
+        <div class="item">
+          <div class="icon">✈️</div>
+          <h3>Agencia de Viajes Digital</h3>
+          <p>Diseño de paquetes turísticos con análisis de mercado.</p>
+          <div style="margin-top:10px"><span class="badge">Turismo</span></div>
+        </div>
+
+        <div class="item">
+          <div class="icon">🤖</div>
+          <h3>Casos empresariales con IA</h3>
+          <p>Generación de escenarios reales y actuales para el aula.</p>
+          <div style="margin-top:10px"><span class="badge ai">IA Educativa</span></div>
+        </div>
+
+        <div class="item">
+          <div class="icon">📝</div>
+          <h3>Materiales con IA</h3>
+          <p>Fichas, ejercicios, tests y recursos adaptados.</p>
+          <div style="margin-top:10px"><span class="badge ai">Personalizados</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html">Volver a inicio</a>
+        <a class="btn primary" href="contacto.html">Contactar</a>
+      </div>
     </div>
   </main>
 
-  <footer class="bg-gray-900 text-white py-8 mt-12">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
-      © 2026 Juan Peco · <a class="hover:text-orange-400" href="contacto.html">Contacto</a>
+  <footer class="footer">
+    <div class="container">
+      <div>juanpeco.es • <a href="mailto:hola@juanpeco.es">hola@juanpeco.es</a></div>
+      <div style="margin-top:6px;">© 2024 Juan Peco - Docente Especializado en Economía, Empresa y Turismo</div>
     </div>
   </footer>
 </body>
