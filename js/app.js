@@ -1,158 +1,226 @@
-// Datos (prompts + artículos) y renderizado simple sin dependencias.
-// Puedes sustituir contenidos cuando quieras.
+// JuanPeco.es - Prompt Library (client-side)
+// Loads prompts from /js/prompts_1500.json and renders with search + filters + pagination.
 
-const PROMPTS = [
-  // Ejemplos (los tuyos). Puedes añadir muchos más; el filtro/paginación aguanta bien.
-  {
-    title: "Análisis de elasticidad precio-demanda",
-    category: "Economía",
-    ai: "chatgpt",
-    excerpt: "Actúa como un economista experto. Analiza la elasticidad precio-demanda del siguiente producto: [PRODUCTO]...",
-    prompt: "Actúa como un economista experto. Analiza la elasticidad precio-demanda del siguiente producto: [PRODUCTO]. Incluye: 1) Cálculo de la elasticidad con [DATOS], 2) Interpretación, 3) Implicaciones para la fijación de precios, 4) Recomendaciones."
-  },
-  {
-    title: "Simulación de política monetaria",
-    category: "Economía",
-    ai: "claude",
-    excerpt: "Eres el presidente del Banco Central de un país ficticio...",
-    prompt: "Eres el presidente del Banco Central de un país ficticio. El PIB actual es [X]%, la inflación [Y]%, y el desempleo [Z]%. Diseña una política monetaria para los próximos 6 meses: objetivo, instrumentos, riesgos y métricas de seguimiento."
-  },
-  {
-    title: "Generador de casos prácticos PIB",
-    category: "Economía",
-    ai: "gemini",
-    excerpt: "Crea 5 ejercicios prácticos sobre el cálculo del PIB...",
-    prompt: "Crea 5 ejercicios prácticos sobre el cálculo del PIB para estudiantes de Bachillerato. Cada ejercicio debe incluir: datos de una economía ficticia, preguntas guiadas, solución y explicación didáctica."
-  },
-  {
-    title: "Análisis DAFO interactivo",
-    category: "Empresa",
-    ai: "perplexity",
-    excerpt: "Realiza un análisis DAFO profundo para la empresa [NOMBRE]...",
-    prompt: "Realiza un análisis DAFO profundo para la empresa [NOMBRE] del sector [SECTOR]. Para cada cuadrante, incluye 5 puntos con justificación y 3 acciones recomendadas."
-  },
-  {
-    title: "Calculadora de punto de equilibrio",
-    category: "Contabilidad",
-    ai: "chatgpt",
-    excerpt: "Calcula el punto de equilibrio para una empresa con costes fijos...",
-    prompt: "Calcula el punto de equilibrio con: costes fijos [X], precio unitario [Y], coste variable unitario [Z]. Incluye: unidades, ventas, interpretación y cómo cambia si el precio baja un 5%."
-  },
-  {
-    title: "Diseñador de paquetes turísticos",
-    category: "Turismo",
-    ai: "chatgpt",
-    excerpt: "Diseña un paquete turístico completo para [DESTINO]...",
-    prompt: "Diseña un paquete turístico para [DESTINO] dirigido a [PERFIL]. Incluye: itinerario día a día, alojamiento, transporte, presupuesto, propuesta de valor y plan de comercialización."
-  },
-];
+(function () {
+  const PAGE_SIZE = 30;
 
-// 30 artículos (listado realista + editable)
-const ARTICULOS = Array.from({ length: 30 }, (_, i) => {
-  const n = i + 1;
-  const cats = ["Economía", "Empresa", "Turismo", "Finanzas", "IA Educativa"];
-  const category = cats[i % cats.length];
-  return {
-    id: `articulo-${String(n).padStart(2, "0")}`,
-    title: `Artículo ${String(n).padStart(2, "0")}: ${category} aplicado al aula`,
-    category,
-    date: `2024-${String(((i % 12) + 1)).padStart(2, "0")}-${String(((i % 27) + 1)).padStart(2, "0")}`,
-    excerpt:
-      "Resumen breve del artículo. Sustituye este texto por el contenido real (introducción) y enlaza al HTML del artículo si lo publicas en /articulos/.",
-    url: `articulos/${String(n).padStart(2, "0")}.html`
-  };
-});
+  const $ = (sel) => document.querySelector(sel);
 
-function el(id){ return document.getElementById(id); }
-
-function renderPrompts(){
-  const list = el("promptList");
-  if(!list) return;
-
-  const q = (el("promptSearch")?.value || "").trim().toLowerCase();
-  const cat = el("promptCategory")?.value || "Todas";
-  const ai = el("promptAI")?.value || "Todas";
-
-  const filtered = PROMPTS.filter(p => {
-    const matchQ =
-      !q ||
-      p.title.toLowerCase().includes(q) ||
-      p.excerpt.toLowerCase().includes(q) ||
-      p.prompt.toLowerCase().includes(q);
-
-    const matchCat = (cat === "Todas") || (p.category === cat);
-    const matchAI = (ai === "Todas") || (p.ai === ai);
-    return matchQ && matchCat && matchAI;
-  });
-
-  const total = filtered.length;
-  const maxShow = 50;
-  const shown = filtered.slice(0, maxShow);
-
-  list.innerHTML = shown.map(p => `
-    <div class="prompt">
-      <h4>${escapeHtml(p.title)}</h4>
-      <p>${escapeHtml(p.excerpt)}</p>
-      <div class="meta">
-        <span class="badge">${escapeHtml(p.category)}</span>
-        <span class="badge ai">${escapeHtml(p.ai)}</span>
-      </div>
-      <code>${escapeHtml(p.prompt)}</code>
-    </div>
-  `).join("");
-
-  const info = el("promptInfo");
-  if(info){
-    info.textContent = `Mostrando ${Math.min(maxShow, total)} de ${total} prompts`;
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[m]));
   }
-}
 
-function renderArticulos(){
-  const list = el("articulosList");
-  if(!list) return;
-
-  const q = (el("artSearch")?.value || "").trim().toLowerCase();
-  const cat = el("artCategory")?.value || "Todas";
-
-  const filtered = ARTICULOS.filter(a => {
-    const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
-    const matchCat = (cat === "Todas") || (a.category === cat);
-    return matchQ && matchCat;
-  });
-
-  list.innerHTML = filtered.map(a => `
-    <a class="item" href="${a.url}">
-      <div class="icon">📝</div>
-      <h3>${escapeHtml(a.title)}</h3>
-      <p>${escapeHtml(a.excerpt)}</p>
-      <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-        <span class="badge">${escapeHtml(a.category)}</span>
-        <span class="badge">${escapeHtml(a.date)}</span>
-      </div>
-    </a>
-  `).join("");
-
-  const info = el("artInfo");
-  if(info){
-    info.textContent = `Mostrando ${filtered.length} de ${ARTICULOS.length} artículos`;
+  function uniq(arr) {
+    return Array.from(new Set(arr.filter(Boolean)));
   }
-}
 
-function escapeHtml(str){
-  return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
+  function normalize(s) {
+    return (s || "").toString().trim().toLowerCase();
+  }
 
-document.addEventListener("input", (e) => {
-  if(["promptSearch","promptCategory","promptAI"].includes(e.target.id)) renderPrompts();
-  if(["artSearch","artCategory"].includes(e.target.id)) renderArticulos();
-});
+  function buildOptions(selectEl, values, keepFirst = true) {
+    const first = keepFirst ? selectEl.querySelector("option") : null;
+    selectEl.innerHTML = "";
+    if (first) selectEl.appendChild(first);
+    values.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      selectEl.appendChild(opt);
+    });
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderPrompts();
-  renderArticulos();
-});
+  function promptMatches(p, term) {
+    if (!term) return true;
+    const t = normalize(term);
+    const hay = normalize([p.title, p.category, p.subcategory, p.sector, p.ai, p.text].join(" "));
+    return hay.includes(t);
+  }
+
+  function renderCard(p) {
+    const badges = [
+      p.category ? `<span class="badge">${escapeHtml(p.category)}</span>` : "",
+      p.subcategory ? `<span class="badge">${escapeHtml(p.subcategory)}</span>` : "",
+      p.ai ? `<span class="badge">${escapeHtml(p.ai)}</span>` : ""
+    ].filter(Boolean).join(" ");
+
+    const textSafe = escapeHtml(p.text || "");
+
+    return `
+      <article class="prompt-card">
+        <div class="prompt-head">
+          <div class="prompt-title">
+            <h3>${escapeHtml(p.title || "Prompt")}</h3>
+            <div class="prompt-badges">${badges}</div>
+          </div>
+          <div class="prompt-actions">
+            <button class="btn small" data-action="toggle">Ver</button>
+            <button class="btn small" data-action="copy">Copiar</button>
+          </div>
+        </div>
+        <div class="prompt-body" hidden>
+          <pre class="prompt-text">${textSafe}</pre>
+        </div>
+      </article>
+    `;
+  }
+
+  async function loadPrompts() {
+    const res = await fetch("js/prompts_1500.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("No se pudo cargar js/prompts_1500.json");
+    return await res.json();
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const listEl = $("#promptList");
+    const infoEl = $("#promptInfo");
+    const searchEl = $("#promptSearch");
+    const catEl = $("#promptCategory");
+    const aiEl = $("#promptAI");
+
+    if (!listEl || !infoEl || !searchEl || !catEl || !aiEl) return;
+
+    let prompts = [];
+    try {
+      prompts = await loadPrompts();
+    } catch (e) {
+      listEl.innerHTML = `<div class="smallnote">Error cargando la biblioteca: ${escapeHtml(e.message)}</div>`;
+      return;
+    }
+
+    // Populate dynamic filters from data (keeps "Todas..." first option).
+    const categories = uniq(prompts.map(p => p.category)).sort((a,b)=>a.localeCompare(b,'es'));
+    const ais = uniq(prompts.map(p => p.ai)).sort((a,b)=>a.localeCompare(b,'es'));
+    buildOptions(catEl, categories, true);
+    buildOptions(aiEl, ais, true);
+
+    let state = {
+      term: "",
+      category: "Todas",
+      ai: "Todas",
+      page: 1
+    };
+
+    // Create pager UI (below list)
+    const pager = document.createElement("div");
+    pager.className = "prompt-pager";
+    pager.innerHTML = `
+      <button class="btn" id="promptMore" type="button">Cargar más</button>
+      <button class="btn" id="promptTop" type="button">Volver arriba</button>
+    `;
+    listEl.insertAdjacentElement("afterend", pager);
+
+    const moreBtn = $("#promptMore");
+    const topBtn = $("#promptTop");
+
+    function getFiltered() {
+      return prompts.filter(p => {
+        if (state.category !== "Todas" && p.category !== state.category) return false;
+        if (state.ai !== "Todas" && p.ai !== state.ai) return false;
+        if (!promptMatches(p, state.term)) return false;
+        return true;
+      });
+    }
+
+    function render(reset = false) {
+      const filtered = getFiltered();
+      const total = filtered.length;
+      const showing = Math.min(state.page * PAGE_SIZE, total);
+
+      infoEl.textContent = `Mostrando ${showing} de ${total} prompts`;
+
+      if (reset) listEl.innerHTML = "";
+
+      const slice = filtered.slice(0, showing);
+      listEl.innerHTML = slice.map(renderCard).join("");
+
+      // Enable/disable "Cargar más"
+      if (showing >= total) {
+        moreBtn.disabled = true;
+        moreBtn.textContent = "No hay más";
+      } else {
+        moreBtn.disabled = false;
+        moreBtn.textContent = "Cargar más";
+      }
+    }
+
+    function resetAndRender() {
+      state.page = 1;
+      render(true);
+    }
+
+    // Events
+    searchEl.addEventListener("input", () => {
+      state.term = searchEl.value || "";
+      resetAndRender();
+    });
+
+    catEl.addEventListener("change", () => {
+      state.category = catEl.value;
+      resetAndRender();
+    });
+
+    aiEl.addEventListener("change", () => {
+      state.ai = aiEl.value;
+      resetAndRender();
+    });
+
+    moreBtn.addEventListener("click", () => {
+      state.page += 1;
+      render(true);
+    });
+
+    topBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Delegate card actions
+    listEl.addEventListener("click", async (ev) => {
+      const btn = ev.target.closest("button[data-action]");
+      if (!btn) return;
+      const card = ev.target.closest(".prompt-card");
+      if (!card) return;
+
+      const action = btn.getAttribute("data-action");
+      const body = card.querySelector(".prompt-body");
+      const pre = card.querySelector(".prompt-text");
+      const text = pre ? pre.textContent : "";
+
+      if (action === "toggle") {
+        const isHidden = body.hasAttribute("hidden");
+        if (isHidden) body.removeAttribute("hidden");
+        else body.setAttribute("hidden", "");
+        btn.textContent = isHidden ? "Ocultar" : "Ver";
+      }
+
+      if (action === "copy") {
+        try {
+          await navigator.clipboard.writeText(text);
+          const old = btn.textContent;
+          btn.textContent = "Copiado";
+          setTimeout(() => (btn.textContent = old), 900);
+        } catch {
+          // Fallback
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          const old = btn.textContent;
+          btn.textContent = "Copiado";
+          setTimeout(() => (btn.textContent = old), 900);
+        }
+      }
+    });
+
+    // First render
+    render(true);
+  });
+})();
