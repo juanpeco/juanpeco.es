@@ -1,600 +1,1490 @@
 <!doctype html>
-<html lang="es">
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Juan Peco - Docente</title>
-  <meta name="description" content="Docente especializado en Economía, Empresa y Turismo. IA educativa, recursos interactivos y biblioteca de prompts." />
-  <link rel="stylesheet" href="css/estilos.css" />
-</head>
-<body>
-
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="index.html" aria-label="Inicio">
-        <div class="logo">JP</div>
-        <div class="brand-txt">
-          <div class="mini">Juan Peco</div>
-          <div class="name">Docente Especializado</div>
-        </div>
-      </a>
-
-      <nav aria-label="Navegación principal">
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#innovacion">Innovación</a>
-        <a href="#experiencias">Experiencias</a>
-        <a href="#laboratorio">Laboratorio IA</a>
-        <a href="#especialidades">Especialidades</a>
-        <a href="#prompts">Prompts IA</a>
-        <a href="#contactar">Contactar</a>
-      </nav>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Peco | Docente Innovador - Economía, Empresa y Turismo</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; width: 100%; }
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+        
+        body { font-family: 'Geist', sans-serif; }
+        
+        /* HEADER FIJO */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(12px);
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(0,102,204,0.12);
+            height: 65px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .header-content { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 1.5rem; 
+            height: 100%;
+        }
+        
+        .logo { 
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 0.5rem; 
+            align-items: center;
+        }
+        nav a { 
+            text-decoration: none; 
+            color: #555; 
+            font-weight: 500; 
+            font-size: 0.85rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        nav a:hover { 
+            color: #0066CC; 
+            background: rgba(0,102,204,0.08); 
+        }
+        
+        .hamburger { 
+            display: none; 
+            background: none; 
+            border: none; 
+            font-size: 1.3rem; 
+            cursor: pointer; 
+            color: #0066CC; 
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .hamburger:active { transform: scale(0.95); }
+        
+        .mobile-menu { 
+            display: none; 
+            position: fixed; 
+            top: 65px; 
+            left: 0; 
+            right: 0; 
+            background: white;
+            flex-direction: column;
+            border-bottom: 1px solid rgba(0,102,204,0.12);
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { 
+            display: block; 
+            padding: 0.9rem 1.5rem;
+            text-decoration: none;
+            color: #555;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.25s;
+        }
+        .mobile-menu a:hover { 
+            background: rgba(0,102,204,0.08); 
+            color: #0066CC;
+            padding-left: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hamburger { display: flex; }
+        }
+        
+        main { margin-top: 65px; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        .section-pad { padding: 6rem 0; }
+        @media (max-width: 768px) { .section-pad { padding: 4rem 0; } }
+        
+        /* HERO */
+        .hero { 
+            background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
+            border-bottom: 1px solid rgba(0,102,204,0.1);
+        }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: #0a0e27; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.125rem; color: #666; margin-bottom: 2rem; line-height: 1.6; }
+        .bullets { list-style: none; margin-bottom: 2rem; }
+        .bullets li { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; font-weight: 500; color: #374151; }
+        .bullets li::before { content: "✓"; color: #00B4D8; font-weight: 800; }
+        
+        .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { 
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        .btn-primary { 
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        .btn-primary:hover { background: #6d28d9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4); }
+        .btn-secondary { 
+            border: 2px solid #7c3aed;
+            color: #7c3aed;
+            background: white;
+        }
+        .btn-secondary:hover { background: rgba(124, 58, 237, 0.08); }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+        .stat-card { 
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0,102,204,0.1);
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: #0066CC; }
+        .stat-label { color: #666; font-size: 0.9rem; margin-top: 0.5rem; }
+        
+        .hero-img { display: flex; align-items: center; justify-content: center; }
+        .hero-emoji { font-size: 8rem; opacity: 0.9; }
+        
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-img { order: -1; }
+            .hero h1 { font-size: 2rem; }
+        }
+        
+        /* SECCIONES */
+        .section-title { 
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #7c3aed;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle { 
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        /* CARDS */
+        .card { 
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .card:hover { 
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,102,204,0.12);
+        }
+        
+        .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .card-title { font-size: 1.1rem; font-weight: 700; color: #0a0e27; margin-bottom: 0.75rem; }
+        .card-text { color: #666; font-size: 0.95rem; line-height: 1.6; }
+        
+        /* GRILLAS */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        
+        /* FILTROS */
+        .filter-group { 
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 1rem; 
+            margin-bottom: 2rem;
+        }
+        .filter-group select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-group select:hover, .filter-group select:focus {
+            border-color: #0066CC;
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+            outline: none;
+        }
+        
+        /* PAGINACIÓN */
+        .load-more-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 1rem 2rem;
+            background: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        .load-more-btn:hover { 
+            background: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+        }
+        .load-more-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        /* FORMULARIO */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0a0e27;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0066CC;
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #0a0e27;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        footer a { color: #00B4D8; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        
+        /* UTILIDADES */
+        .bg-accent { background: rgba(0,102,204,0.08); }
+        .text-accent { color: #0066CC; }
+        .divider { height: 1px; background: rgba(0,0,0,0.08); margin: 3rem 0; }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-economía { background: #FEE2E2; color: #991B1B; }
+        .badge-empresa { background: #DBEAFE; color: #1E40AF; }
+        .badge-marketing { background: #CCFBF1; color: #134E4A; }
+        .badge-turismo { background: #FEF3C7; color: #92400E; }
+        .badge-educación { background: #F3E8FF; color: #5B21B6; }
+    </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-white">
+  <!-- HEADER FIJO -->
+  <header>
+   <div class="header-content">
+    <div class="logo" style="font-weight: 800; font-size: 1.25rem; color: #7c3aed;">
+     JUANPECO
     </div>
+    <nav class="hidden md:block">
+     <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobremi">Sobre mí</a></li>
+      <li><a href="#impacto">Impacto</a></li>
+      <li><a href="#innovacion">Innovación</a></li>
+      <li><a href="#prompts">Biblioteca IA</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+     </ul>
+    </nav><button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+   </div>
+  </header><!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
+   <a href="#inicio" onclick="closeMobileMenu()">Inicio</a> <a href="#sobremi" onclick="closeMobileMenu()">Sobre mí</a> <a href="#impacto" onclick="closeMobileMenu()">Impacto</a> <a href="#innovacion" onclick="closeMobileMenu()">Innovación</a> <a href="#prompts" onclick="closeMobileMenu()">Biblioteca IA</a> <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
   </div>
-
-  <header class="hero">
-    <div class="container hero-grid">
-      <div class="card card-pad">
-        <div class="pill">Juan Peco - Docente</div>
-        <h1 class="h1">Juan Peco</h1>
-        <p class="subtitle">
-          Docente Especializado en Economía, Empresa y Turismo
-          <br><br>
-          📚 Bachillerato &nbsp;&nbsp; 🎓 Formación Profesional &nbsp;&nbsp; 🤖 IA Educativa
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#contactar">Contactar ahora</a>
-          <a class="btn" href="blog.html">Ver recursos</a>
-        </div>
-
-        <hr class="sep" />
-
-        <div class="grid-4" aria-label="Metodologías">
-          <div class="item">
-            <div class="icon">⚡</div>
-            <h3>Metodologías activas</h3>
-            <p>Aprendizaje práctico, proyectos y retos.</p>
-          </div>
-          <div class="item">
-            <div class="icon">🎮</div>
-            <h3>Gamificación</h3>
-            <p>Dinámicas para motivación y evaluación.</p>
-          </div>
-          <div class="item">
-            <div class="icon">🤖</div>
-            <h3>IA en educación</h3>
-            <p>Casos, análisis y materiales adaptados.</p>
-          </div>
-          <div class="item">
-            <div class="icon">🧩</div>
-            <h3>Robótica educativa</h3>
-            <p>Competencias digitales y pensamiento lógico.</p>
-          </div>
-        </div>
+  <main class="w-full overflow-hidden">
+   <!-- HERO SECTION -->
+   <section id="inicio" class="hero section-pad">
+    <div class="container">
+     <div class="hero-content">
+      <div>
+       <h1 id="hero-title" style="color: #7c3aed; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem;">Docente de Administración de Empresas, Economía e Innovación Educativa</h1>
+       <p id="hero-subtitle" style="font-size: 1.15rem; color: #7c3aed; font-weight: 600; margin-bottom: 1.5rem;">IA educativa, simulaciones empresariales y metodologías activas aplicadas a Bachillerato y Formación Profesional.</p>
+       <p id="hero-description" style="font-size: 1rem; color: #374151; line-height: 1.8; margin-bottom: 2rem; max-width: 700px;">Desarrollo experiencias de aprendizaje basadas en simulaciones económicas, inteligencia artificial y proyectos empresariales reales. Además participo en el programa Código Escuela 4.0, acompañando a centros educativos en la integración de tecnología en el aula.</p>
+       <div class="cta-group">
+        <button class="btn btn-primary" onclick="document.getElementById('prompts').scrollIntoView({behavior:'smooth'})">Explorar recursos</button> <button class="btn btn-secondary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contactar</button>
+       </div>
       </div>
-
-      <aside class="card card-pad">
-        <div class="section-title">
-          <h2>Indicadores</h2>
-          <p>Impacto y recursos</p>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="n">1500+</div>
-            <div class="l">Prompts IA</div>
-          </div>
-          <div class="stat">
-            <div class="n">3</div>
-            <div class="l">Especialidades</div>
-          </div>
-          <div class="stat">
-            <div class="n">50+</div>
-            <div class="l">Recursos Educativos</div>
-          </div>
-          <div class="stat">
-            <div class="n">100%</div>
-            <div class="l">Innovación</div>
-          </div>
-        </div>
-
-        <hr class="sep" />
-
-        <div class="quote">
-          <p>
-            "Mi objetivo es que los estudiantes comprendan cómo funciona la economía y la empresa a través de experiencias prácticas utilizando herramientas tecnológicas que ya están transformando el mundo profesional."
-          </p>
-          <div class="by">— Juan Peco, Docente Especializado en Economía, Empresa y Turismo</div>
-        </div>
-      </aside>
+      <div class="hero-img">
+       <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; min-height: 400px;"><!-- FONDO GLOW CENTRAL -->
+        <div style="position: absolute; width: 320px; height: 320px; background: radial-gradient(circle, rgba(0,102,204,0.15) 0%, transparent 70%); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(40px);"></div><!-- ÓRBITA 1 (Exterior) - Grande y lenta -->
+        <div style="position: absolute; width: 320px; height: 320px; border: 2px solid rgba(0,102,204,0.2); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 40s linear infinite; opacity: 0.6;"></div><!-- ÓRBITA 2 (Media) - Velocidad media -->
+        <div style="position: absolute; width: 240px; height: 240px; border: 2px solid rgba(255,140,0,0.15); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 25s linear reverse; opacity: 0.8;"></div><!-- ÓRBITA 3 (Interior) - Rápida -->
+        <div style="position: absolute; width: 160px; height: 160px; border: 1.5px dashed rgba(0,102,204,0.25); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 15s linear infinite; opacity: 0.9;"></div><!-- CENTRO ENERGÉTICO: Núcleo de datos con detalles -->
+        <div style="position: relative; z-index: 15; display: flex; align-items: center; justify-content: center;">
+         <!-- Anillo central pulsante -->
+         <div style="position: absolute; width: 120px; height: 120px; border: 3px solid rgba(0,102,204,0.4); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite;"></div>
+         <div style="position: absolute; width: 100px; height: 100px; border: 2px solid rgba(255,140,0,0.2); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; animation-delay: 0.4s;"></div><!-- Símbolo central: punto luminoso con aura -->
+         <div style="position: relative; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 3rem; animation: float 4s ease-in-out infinite; text-shadow: 0 0 20px rgba(0,102,204,0.5), 0 0 40px rgba(0,102,204,0.2);">
+          🌐
+         </div>
+        </div><!-- ELEMENTOS EN ÓRBITA PRINCIPAL (6 elementos) --> <!-- 1. COHETE - Innovación y Futuro (superior derecha) -->
+        <div style="position: absolute; width: 160px; height: 160px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit1 22s linear infinite;">
+         <div style="position: absolute; right: -28px; top: -5px; font-size: 3.2rem; filter: drop-shadow(0 0 12px rgba(255,140,0,0.4)); animation: bounce 1s ease-in-out infinite;">
+          🚀
+         </div>
+         <div style="position: absolute; right: -35px; top: 0px; width: 40px; height: 40px; background: radial-gradient(circle, rgba(255,140,0,0.3), transparent); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+        </div><!-- 2. IA - Inteligencia Artificial (derecha) -->
+        <div style="position: absolute; width: 170px; height: 170px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit2 26s linear infinite;">
+         <div style="position: absolute; right: -32px; top: 15px; font-size: 3rem; filter: drop-shadow(0 0 15px rgba(0,102,204,0.35)); animation: rotate-emoji 4s linear infinite;">
+          🤖
+         </div>
+         <div style="position: absolute; right: -40px; top: 10px; width: 45px; height: 45px; border: 2px solid rgba(0,102,204,0.25); border-radius: 50%; animation: spin 3s linear infinite;"></div>
+        </div><!-- 3. GRÁFICO - Análisis Económico (abajo derecha) -->
+        <div style="position: absolute; width: 190px; height: 190px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit3 30s linear infinite;">
+         <div style="position: absolute; right: -38px; bottom: -15px; font-size: 3.2rem; filter: drop-shadow(0 0 12px rgba(0,102,204,0.3)); animation: float 3.5s ease-in-out infinite;">
+          📊
+         </div>
+         <div style="position: absolute; right: -45px; bottom: -20px; width: 50px; height: 50px; background: linear-gradient(135deg, rgba(0,102,204,0.15), rgba(0,102,204,0.05)); border-radius: 8px; animation: float 3.5s ease-in-out infinite; animation-delay: 0.2s;"></div>
+        </div><!-- 4. EMPRESA - Negocio (arriba izquierda) -->
+        <div style="position: absolute; width: 175px; height: 175px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit4 28s linear reverse;">
+         <div style="position: absolute; left: -35px; top: -18px; font-size: 3.1rem; filter: drop-shadow(0 0 12px rgba(255,140,0,0.35)); animation: float 4s ease-in-out infinite;">
+          🏢
+         </div>
+         <div style="position: absolute; left: -42px; top: -23px; width: 48px; height: 48px; border: 2px solid rgba(255,140,0,0.2); border-radius: 4px; animation: float 4s ease-in-out infinite; animation-delay: 0.3s;"></div>
+        </div><!-- 5. TURISMO - Aventura (abajo izquierda) -->
+        <div style="position: absolute; width: 165px; height: 165px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit5 24s linear infinite;">
+         <div style="position: absolute; left: -30px; bottom: -5px; font-size: 3.1rem; filter: drop-shadow(0 0 12px rgba(0,102,204,0.3)); animation: bounce 1.2s ease-in-out infinite;">
+          ✈️
+         </div>
+         <div style="position: absolute; left: -38px; bottom: -10px; width: 45px; height: 45px; background: linear-gradient(45deg, rgba(0,102,204,0.1), transparent); border-radius: 50%; animation: float 3s ease-in-out infinite;"></div>
+        </div><!-- 6. INNOVACIÓN - Bombilla (superior izquierda) -->
+        <div style="position: absolute; width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbit6 27s linear reverse;">
+         <div style="position: absolute; left: -38px; top: 10px; font-size: 3rem; filter: drop-shadow(0 0 15px rgba(255,140,0,0.4)); animation: glow-pulse 2s ease-in-out infinite;">
+          💡
+         </div>
+         <div style="position: absolute; left: -45px; top: 5px; width: 50px; height: 50px; background: radial-gradient(circle, rgba(255,140,0,0.2), transparent); border-radius: 50%; animation: glow-pulse 2s ease-in-out infinite; animation-delay: 0.3s;"></div>
+        </div><!-- LÍNEAS DE CONEXIÓN (conexiones sutiles entre órbitas) -->
+        <svg style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0.3;">
+         <circle cx="50%" cy="50%" r="80" fill="none" stroke="rgba(0,102,204,0.1)" stroke-width="1" /> <circle cx="50%" cy="50%" r="120" fill="none" stroke="rgba(0,102,204,0.08)" stroke-width="1" /> <circle cx="50%" cy="50%" r="160" fill="none" stroke="rgba(0,102,204,0.06)" stroke-width="1" />
+        </svg><!-- PARTÍCULAS FLOTANTES AVANZADAS -->
+        <div style="position: absolute; width: 8px; height: 8px; background: radial-gradient(circle, #0066CC, rgba(0,102,204,0.3)); border-radius: 50%; top: 15%; left: 20%; opacity: 0.7; animation: float-particle 7s ease-in-out infinite; box-shadow: 0 0 15px rgba(0,102,204,0.4);"></div>
+        <div style="position: absolute; width: 5px; height: 5px; background: #FF8C00; border-radius: 50%; top: 75%; left: 82%; opacity: 0.6; animation: float-particle 8s ease-in-out infinite 1s; box-shadow: 0 0 12px rgba(255,140,0,0.3);"></div>
+        <div style="position: absolute; width: 6px; height: 6px; background: radial-gradient(circle, #0066CC, rgba(0,102,204,0.2)); border-radius: 50%; top: 25%; right: 12%; opacity: 0.5; animation: float-particle 9s ease-in-out infinite 2s; box-shadow: 0 0 10px rgba(0,102,204,0.3);"></div>
+        <div style="position: absolute; width: 4px; height: 4px; background: #FF8C00; border-radius: 50%; top: 65%; right: 18%; opacity: 0.4; animation: float-particle 10s ease-in-out infinite 1.5s; box-shadow: 0 0 8px rgba(255,140,0,0.25);"></div>
+        <div style="position: absolute; width: 7px; height: 7px; background: radial-gradient(circle, rgba(0,102,204,0.4), transparent); border-radius: 50%; top: 40%; left: 8%; opacity: 0.3; animation: float-particle 11s ease-in-out infinite 2.5s;"></div>
+       </div>
+      </div>
+      <style>
+       @keyframes spin {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+       }
+       @keyframes orbit1 {
+        from { transform: translate(-50%, -50%) rotate(0deg) translateX(70px) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg) translateX(70px) rotate(-360deg); }
+       }
+       @keyframes orbit2 {
+        from { transform: translate(-50%, -50%) rotate(60deg) translateX(75px) rotate(-60deg); }
+        to { transform: translate(-50%, -50%) rotate(420deg) translateX(75px) rotate(-420deg); }
+       }
+       @keyframes orbit3 {
+        from { transform: translate(-50%, -50%) rotate(120deg) translateX(90px) rotate(-120deg); }
+        to { transform: translate(-50%, -50%) rotate(480deg) translateX(90px) rotate(-480deg); }
+       }
+       @keyframes orbit4 {
+        from { transform: translate(-50%, -50%) rotate(180deg) translateX(82px) rotate(-180deg); }
+        to { transform: translate(-50%, -50%) rotate(-180deg) translateX(82px) rotate(180deg); }
+       }
+       @keyframes orbit5 {
+        from { transform: translate(-50%, -50%) rotate(240deg) translateX(77px) rotate(-240deg); }
+        to { transform: translate(-50%, -50%) rotate(600deg) translateX(77px) rotate(-600deg); }
+       }
+       @keyframes orbit6 {
+        from { transform: translate(-50%, -50%) rotate(300deg) translateX(95px) rotate(-300deg); }
+        to { transform: translate(-50%, -50%) rotate(60deg) translateX(95px) rotate(-60deg); }
+       }
+       @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+       }
+       @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+       }
+       @keyframes float-particle {
+        0%, 100% { transform: translateY(0px) translateX(0px); }
+        25% { transform: translateY(-25px) translateX(18px); }
+        50% { transform: translateY(-40px) translateX(-12px); }
+        75% { transform: translateY(-20px) translateX(22px); }
+       }
+       @keyframes bounce {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+       }
+       @keyframes rotate-emoji {
+        from { transform: rotateZ(0deg); }
+        to { transform: rotateZ(360deg); }
+       }
+       @keyframes glow-pulse {
+        0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 8px rgba(255,140,0,0.3)); }
+        50% { opacity: 1; filter: drop-shadow(0 0 20px rgba(255,140,0,0.6)); }
+       }
+      </style>
+     </div>
+     <div class="stats-grid">
+      <div class="stat-card">
+       <div style="font-size: 2rem; margin-bottom: 0.75rem;">
+        📚
+       </div>
+       <div class="stat-number">
+        1500+
+       </div>
+       <div class="stat-label">
+        Prompts educativos
+       </div>
+      </div>
+      <div class="stat-card">
+       <div style="font-size: 2rem; margin-bottom: 0.75rem;">
+        🏫
+       </div>
+       <div class="stat-number">
+        15+
+       </div>
+       <div class="stat-label">
+        Centros educativos
+       </div>
+      </div>
+      <div class="stat-card">
+       <div style="font-size: 2rem; margin-bottom: 0.75rem;">
+        🎯
+       </div>
+       <div class="stat-number">
+        50+
+       </div>
+       <div class="stat-label">
+        Recursos didácticos
+       </div>
+      </div>
+      <div class="stat-card">
+       <div style="font-size: 2rem; margin-bottom: 0.75rem;">
+        ✨
+       </div>
+       <div class="stat-number">
+        100%
+       </div>
+       <div class="stat-label">
+        Innovación educativa
+       </div>
+      </div>
+     </div>
     </div>
-  </header>
-
-  <main>
-
-    <!-- SOBRE MÍ -->
-    <section class="section" id="sobre-mi">
-      <div class="container">
-        <div class="section-title">
-          <h2>Sobre mí</h2>
-          <p>Educación + innovación tecnológica</p>
-        </div>
-
-        <div class="card card-pad">
-          <p class="subtitle" style="margin:0;">
-            Soy un profesional apasionado por la educación y la innovación tecnológica. Mi objetivo es transformar la manera en que los estudiantes aprenden economía, administración de empresas y turismo, integrando herramientas de Inteligencia Artificial en el aula.
-            <br><br>
-            Ofrezco un enfoque educativo moderno que combina metodologías activas, recursos interactivos y más de 1500 prompts de IA diseñados específicamente para automatizar y optimizar procesos educativos y empresariales.
-          </p>
-
-          <hr class="sep" />
-
-          <div class="grid-4">
-            <div class="item">
-              <div class="icon">🎯</div>
-              <h3>Enfoque práctico</h3>
-              <p>Casos reales y simulaciones empresariales.</p>
-            </div>
-            <div class="item">
-              <div class="icon">💡</div>
-              <h3>Innovación</h3>
-              <p>Tecnología al servicio del aprendizaje.</p>
-            </div>
-            <div class="item">
-              <div class="icon">🤝</div>
-              <h3>Colaborativo</h3>
-              <p>Trabajo en equipo y proyectos grupales.</p>
-            </div>
-            <div class="item">
-              <div class="icon">📈</div>
-              <h3>Resultados</h3>
-              <p>Mejora continua y seguimiento.</p>
-            </div>
-          </div>
-        </div>
+   </section><!-- SOBRE MÍ -->
+   <section id="sobremi" class="section-pad bg-accent">
+    <div class="container">
+     <h2 class="section-title">Perfil Docente</h2>
+     <p class="section-subtitle">Tu aliado en transformación educativa</p>
+     <p id="about-text" style="font-size: 1.1rem; color: #374151; line-height: 1.8; margin-bottom: 3rem; max-width: 900px;">Soy docente especializado en Economía, Empresa y Turismo con un enfoque centrado en la innovación educativa y la aplicación de herramientas tecnológicas en el aula. Mi objetivo es que los estudiantes comprendan que se van a encontrar en el mercado laboral y cómo funciona la economía a través de experiencias prácticas, simulaciones y proyectos aplicados a situaciones reales. Integro metodologías activas y herramientas de IA para crear actividades dinámicas que acerquen el aprendizaje al mundo profesional.</p>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        🎯
+       </div>
+       <div class="card-title">
+        Práctico
+       </div>
+       <div class="card-text">
+        Simulaciones empresariales, casos reales, proyectos que generan aprendizaje tangible.
+       </div>
       </div>
-    </section>
-
-    <!-- DOCENCIA E INNOVACIÓN -->
-    <section class="section" id="innovacion">
-      <div class="container">
-        <div class="section-title">
-          <h2>🎓 Docencia e Innovación</h2>
-          <p>Conectar aula y realidad empresarial</p>
-        </div>
-
-        <div class="card card-pad">
-          <p class="subtitle" style="margin:0;">
-            La educación en economía, empresa y turismo debe conectar con la realidad del mundo empresarial. Por ello integro metodologías activas, simulaciones económicas y herramientas de inteligencia artificial que permiten a los estudiantes analizar situaciones reales y tomar decisiones como en el entorno profesional.
-          </p>
-
-          <hr class="sep" />
-
-          <div class="grid-2">
-            <div class="item">
-              <div class="icon">🚀</div>
-              <h3>Aprendizaje Basado en Proyectos</h3>
-              <p>Proyectos empresariales y turísticos con contexto real.</p>
-            </div>
-            <div class="item">
-              <div class="icon">🎮</div>
-              <h3>Simulaciones Empresariales</h3>
-              <p>Mercados, precios, inversiones y estrategias.</p>
-            </div>
-            <div class="item">
-              <div class="icon">🤖</div>
-              <h3>Uso de IA en Educación</h3>
-              <p>Casos prácticos, análisis de datos y recursos adaptados.</p>
-            </div>
-            <div class="item">
-              <div class="icon">🤝</div>
-              <h3>Aprendizaje Colaborativo</h3>
-              <p>Retos en equipo y competencias blandas.</p>
-            </div>
-          </div>
-
-          <hr class="sep" />
-
-          <div class="section-title">
-            <h2>Impacto Pedagógico Medible</h2>
-            <p>Indicadores</p>
-          </div>
-
-          <div class="kpis">
-            <div class="kpi"><div class="big">85%</div><div class="small">Mejora en comprensión de conceptos</div></div>
-            <div class="kpi"><div class="big">92%</div><div class="small">Satisfacción del alumnado</div></div>
-            <div class="kpi"><div class="big">1500+</div><div class="small">Horas de aula innovadora</div></div>
-            <div class="kpi"><div class="big">100%</div><div class="small">Integración IA en proyectos</div></div>
-          </div>
-        </div>
+      <div class="card">
+       <div class="card-icon">
+        🚀
+       </div>
+       <div class="card-title">
+        Innovador
+       </div>
+       <div class="card-text">
+        IA, herramientas digitales y metodologías actuales integradas en el curriculum.
+       </div>
       </div>
-    </section>
-
-    <!-- EXPERIENCIAS -->
-    <section class="section" id="experiencias">
-      <div class="container">
-        <div class="section-title">
-          <h2>✨ Experiencias prácticas</h2>
-          <p>Actividades reales en el aula</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="item">
-            <div class="icon">📊</div>
-            <h3>Simulación de Mercado</h3>
-            <p>Oferta, demanda y equilibrio mediante simulaciones en tiempo real.</p>
-            <div style="margin-top:10px"><span class="badge">Economía</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">🏢</div>
-            <h3>Empresa Virtual</h3>
-            <p>Gestión de una empresa simulada y análisis de resultados financieros.</p>
-            <div style="margin-top:10px"><span class="badge">Administración</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">💰</div>
-            <h3>Análisis de Inversiones</h3>
-            <p>VAN, TIR y viabilidad de proyectos con herramientas digitales.</p>
-            <div style="margin-top:10px"><span class="badge">Finanzas</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">✈️</div>
-            <h3>Productos Turísticos</h3>
-            <p>Diseño de experiencias basadas en mercado, sostenibilidad y tendencias.</p>
-            <div style="margin-top:10px"><span class="badge">Turismo</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">📈</div>
-            <h3>Casos Empresariales</h3>
-            <p>Análisis de estrategias actuales con enfoque crítico.</p>
-            <div style="margin-top:10px"><span class="badge">Estrategia</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">💡</div>
-            <h3>¿Por qué funciona?</h3>
-            <p>✓ Teoría→práctica ✓ Competencias laborales ✓ Motivación ✓ Pensamiento crítico</p>
-            <div style="margin-top:10px"><span class="badge ok">Aprendizaje significativo</span></div>
-          </div>
-        </div>
+      <div class="card">
+       <div class="card-icon">
+        🤝
+       </div>
+       <div class="card-title">
+        Colaborativo
+       </div>
+       <div class="card-text">
+        Trabajo en equipo, aprendizaje basado en proyectos, aprendizaje social.
+       </div>
       </div>
-    </section>
-
-    <!-- ESPECIALIDADES -->
-    <section class="section" id="especialidades">
-      <div class="container">
-        <div class="section-title">
-          <h2>Especialidades</h2>
-          <p>Bachillerato y FP</p>
+     </div>
+    </div>
+   </section><!-- VISIÓN EDUCATIVA -->
+   <section id="vision" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Visión Educativa</h2>
+     <p class="section-subtitle">Educación que conecta con la realidad profesional</p>
+     <div style="background: linear-gradient(135deg, #f5f9ff, #ffffff); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(0,102,204,0.15); max-width: 900px; margin: 0 auto;">
+      <p id="vision-text" style="font-size: 1.05rem; color: #374151; line-height: 1.9; margin-bottom: 2rem;">La educación en economía, empresa y turismo debe conectar con la realidad del mundo profesional. Mi enfoque docente combina metodologías activas, análisis de casos empresariales, simulaciones económicas y herramientas de inteligencia artificial. El objetivo es que los estudiantes desarrollen pensamiento crítico, comprendan los procesos económicos y aprendan a tomar decisiones como lo harían en el mundo empresarial.</p>
+      <div class="grid-3" style="gap: 1.5rem;">
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0066CC;">
+        <div style="font-weight: 700; color: #0066CC; margin-bottom: 0.5rem;">
+         📚 Metodologías Activas
         </div>
-
-        <div class="grid-3">
-          <div class="item">
-            <div class="icon">📊</div>
-            <h3>Economía</h3>
-            <p>• Micro y macro • Política económica • Internacional • Indicadores • Mercados</p>
-            <div style="margin-top:10px"><span class="badge">Bachillerato • FP Administración</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">🏢</div>
-            <h3>Administración de Empresas</h3>
-            <p>• Gestión • Contabilidad y finanzas • Marketing • RRHH • Emprendimiento</p>
-            <div style="margin-top:10px"><span class="badge">FP Administración y Finanzas</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">✈️</div>
-            <h3>Turismo</h3>
-            <p>• Destinos • Agencias • Hotelería • Marketing turístico • Sostenible</p>
-            <div style="margin-top:10px"><span class="badge">FP Turismo y Hostelería</span></div>
-          </div>
+        <div style="font-size: 0.9rem; color: #666;">
+         ABP, gamificación, simulaciones que generan aprendizaje práctico.
         </div>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #00B4D8;">
+        <div style="font-weight: 700; color: #00B4D8; margin-bottom: 0.5rem;">
+         🤖 IA en Educación
+        </div>
+        <div style="font-size: 0.9rem; color: #666;">
+         Herramientas IA para personalizar, crear recursos y potenciar creatividad.
+        </div>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0066CC;">
+        <div style="font-weight: 700; color: #0066CC; margin-bottom: 0.5rem;">
+         🎯 Pensamiento Crítico
+        </div>
+        <div style="font-size: 0.9rem; color: #666;">
+         Análisis de casos reales que desarrollan capacidad de decisión.
+        </div>
+       </div>
       </div>
-    </section>
-
-    <!-- LABORATORIO -->
-    <section class="section" id="laboratorio">
-      <div class="container">
-        <div class="section-title">
-          <h2>🧪 Innovación en el aula · Laboratorio de IA Educativa</h2>
-          <p>Experimentación pedagógica</p>
+     </div>
+     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,102,204,0.15);">
+      <h3 style="font-size: 1.3rem; font-weight: 700; color: #0a0e27; margin-bottom: 1.5rem;">💬 Debates Dirigidos</h3>
+      <div class="grid-3" style="gap: 1.5rem;">
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         🌍
         </div>
-
-        <div class="card card-pad">
-          <p class="subtitle" style="margin:0;">
-            Un espacio de experimentación donde exploramos nuevas formas de enseñar economía, empresa y turismo mediante inteligencia artificial, simulaciones empresariales y análisis de datos en tiempo real.
-          </p>
-
-          <hr class="sep" />
-
-          <div class="grid-3">
-            <div class="item">
-              <div class="icon">📊</div>
-              <h3>Simulador de Mercado</h3>
-              <p>Oferta/demanda, fijación de precios y equilibrios en tiempo real.</p>
-              <div style="margin-top:10px"><span class="badge">Economía • Bachillerato</span></div>
-            </div>
-            <div class="item">
-              <div class="icon">🏢</div>
-              <h3>CEO por un día</h3>
-              <p>Producción, marketing y estrategia empresarial.</p>
-              <div style="margin-top:10px"><span class="badge">Empresa • FP</span></div>
-            </div>
-            <div class="item">
-              <div class="icon">💰</div>
-              <h3>Inversor Virtual</h3>
-              <p>Rentabilidad, riesgo y decisiones de inversión.</p>
-              <div style="margin-top:10px"><span class="badge">Finanzas • Bachillerato</span></div>
-            </div>
-            <div class="item">
-              <div class="icon">✈️</div>
-              <h3>Agencia de Viajes Digital</h3>
-              <p>Paquetes turísticos con segmentación y mercado.</p>
-              <div style="margin-top:10px"><span class="badge">Turismo • FP</span></div>
-            </div>
-            <div class="item">
-              <div class="icon">🤖</div>
-              <h3>Casos Empresariales con IA</h3>
-              <p>Escenarios actuales para análisis en clase.</p>
-              <div style="margin-top:10px"><span class="badge">Todas las asignaturas</span></div>
-            </div>
-            <div class="item">
-              <div class="icon">📝</div>
-              <h3>Materiales Educativos con IA</h3>
-              <p>Fichas, ejercicios y casos adaptados a niveles.</p>
-              <div style="margin-top:10px"><span class="badge">Personalizados</span></div>
-            </div>
-          </div>
-
-          <hr class="sep" />
-
-          <div class="section-title">
-            <h2>Indicadores del Laboratorio</h2>
-            <p>Resultados</p>
-          </div>
-          <div class="kpis">
-            <div class="kpi"><div class="big">1500+</div><div class="small">Prompts educativos</div></div>
-            <div class="kpi"><div class="big">50+</div><div class="small">Recursos didácticos</div></div>
-            <div class="kpi"><div class="big">100%</div><div class="small">Aplicación práctica</div></div>
-            <div class="kpi"><div class="big">∞</div><div class="small">Casos de uso</div></div>
-          </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         Globalización vs. Economía Local
         </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿Beneficia o perjudica la globalización a las economías locales? Posiciones encontradas con argumentos reales.
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         💰
+        </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         Renta Básica Universal
+        </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿Es viable una renta básica? Análisis económico, social y político desde múltiples perspectivas.
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         🌱
+        </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         Economía Circular vs. Lineal
+        </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿Pueden competir modelos sostenibles con la economía tradicional? Rentabilidad vs. sostenibilidad.
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         🤖
+        </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         IA y Empleo
+        </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿La IA destruye o crea empleos? Impacto económico, laboral y social de la automatización.
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         📱
+        </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         Regulación del Comercio Digital
+        </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿Deben regularse más las grandes plataformas? Competencia, impuestos y derechos digitales.
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
+       <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,102,204,0.1); transition: all 0.3s;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,102,204,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+        <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">
+         ✈️
+        </div>
+        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.75rem;">
+         Turismo de Masas vs. Sostenible
+        </div>
+        <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         ¿Cómo equilibrar ingresos turísticos con preservación cultural y ambiental?
+        </div><button onclick="toggleDebateDetail(this)" style="background: rgba(0,102,204,0.08); color: #0066CC; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;">Ver debate</button>
+       </div>
       </div>
-    </section>
-
-    <!-- METODOLOGÍA -->
-    <section class="section" id="metodologia">
-      <div class="container">
-        <div class="section-title">
-          <h2>🎯 Metodología aplicada · Proyectos Educativos con IA</h2>
-          <p>Aplicación real en aula</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="item">
-            <div class="icon">🏗️</div>
-            <h3>Simulación de Empresa</h3>
-            <p>Costes, precios, marketing y estrategia con resultados inmediatos.</p>
-            <div style="margin-top:10px"><span class="badge">Administración</span> <span class="badge">Toma de decisiones</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">📈</div>
-            <h3>Análisis Económico con IA</h3>
-            <p>Interpretación de indicadores, ciclos y previsiones.</p>
-            <div style="margin-top:10px"><span class="badge">Economía</span> <span class="badge">Análisis de datos</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">🚀</div>
-            <h3>Diseño de Startups</h3>
-            <p>Modelos de negocio con análisis de mercado y competencia.</p>
-            <div style="margin-top:10px"><span class="badge">Emprendimiento</span> <span class="badge">Innovación</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">📢</div>
-            <h3>Marketing Digital</h3>
-            <p>Campañas y contenidos con apoyo IA y métricas.</p>
-            <div style="margin-top:10px"><span class="badge">Marketing</span> <span class="badge">RRSS</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">💵</div>
-            <h3>Viabilidad Empresarial</h3>
-            <p>VAN, TIR y payback con simulaciones y escenarios.</p>
-            <div style="margin-top:10px"><span class="badge">Finanzas</span> <span class="badge">Inversión</span></div>
-          </div>
-          <div class="item">
-            <div class="icon">🌍</div>
-            <h3>Experiencias Turísticas</h3>
-            <p>Productos turísticos con tendencias, segmentación y sostenibilidad.</p>
-            <div style="margin-top:10px"><span class="badge">Turismo</span> <span class="badge">Sostenibilidad</span></div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px" class="card card-pad">
-          <div class="section-title">
-            <h2>Innovación Educativa</h2>
-            <p>4 pilares</p>
-          </div>
-
-          <div class="grid-4">
-            <div class="item"><div class="icon">📚</div><h3>Casos reales</h3><p>Escenarios actuales para comprender la aplicación práctica.</p></div>
-            <div class="item"><div class="icon">🎮</div><h3>Simulación económica</h3><p>Decisiones y consecuencias como en la empresa.</p></div>
-            <div class="item"><div class="icon">🤖</div><h3>Tecnología aplicada</h3><p>Contenidos adaptativos y contextualizados.</p></div>
-            <div class="item"><div class="icon">🚀</div><h3>Aprendizaje activo</h3><p>Proyectos colaborativos y autonomía.</p></div>
-          </div>
-
-          <hr class="sep" />
-
-          <div class="section-title">
-            <h2>📊 Resultados comprobados</h2>
-            <p>Indicadores visuales</p>
-          </div>
-
-          <div class="kpis">
-            <div class="kpi"><div class="big">1500+</div><div class="small">Prompts IA · Diseñados para educación</div></div>
-            <div class="kpi"><div class="big">50+</div><div class="small">Recursos interactivos · Listos para usar</div></div>
-            <div class="kpi"><div class="big">2</div><div class="small">Etapas educativas · Bachillerato • FP</div></div>
-            <div class="kpi"><div class="big">∞</div><div class="small">Simulaciones · Empresariales reales</div></div>
-          </div>
-
-          <hr class="sep" />
-
-          <div class="section-title">
-            <h2>Lo que mis estudiantes aprenden</h2>
-            <p>Competencias</p>
-          </div>
-
-          <div class="grid-3">
-            <div class="item"><div class="icon">✅</div><h3>Pensamiento crítico</h3><p>Análisis profundo de problemas complejos.</p></div>
-            <div class="item"><div class="icon">✅</div><h3>Competencias digitales</h3><p>IA y análisis aplicado a contextos reales.</p></div>
-            <div class="item"><div class="icon">✅</div><h3>Experiencia práctica</h3><p>Simulaciones que replican entornos profesionales.</p></div>
-            <div class="item"><div class="icon">✅</div><h3>Trabajo colaborativo</h3><p>Habilidades interpersonales y de equipo.</p></div>
-            <div class="item"><div class="icon">✅</div><h3>Adaptabilidad</h3><p>Flexibilidad ante cambios tecnológicos.</p></div>
-            <div class="item"><div class="icon">✅</div><h3>Motivación</h3><p>Más engagement con aprendizaje activo.</p></div>
-          </div>
-
-          <hr class="sep" />
-
-          <div class="section-title">
-            <h2>💼 Compromiso con la innovación</h2>
-            <p>Visión</p>
-          </div>
-
-          <p class="subtitle" style="margin:0;">
-            La tecnología y la inteligencia artificial están transformando el mundo profesional. Integrar estas herramientas en la educación permite preparar a los estudiantes para comprender mejor la economía, el funcionamiento de las empresas y los retos del sector turístico.
-            <br><br>
-            El objetivo es convertir el aula en un espacio dinámico donde los estudiantes analicen problemas reales, desarrollen pensamiento crítico y aprendan a tomar decisiones como lo hacen en el entorno empresarial actual.
-          </p>
-
-          <div style="margin-top:14px" class="grid-3">
-            <div class="item"><div class="icon">🎯</div><h3>Excelencia pedagógica</h3><p>Metodologías probadas + tecnología de vanguardia.</p></div>
-            <div class="item"><div class="icon">🌍</div><h3>Impacto real</h3><p>Preparar para un mundo laboral en evolución.</p></div>
-            <div class="item"><div class="icon">🔬</div><h3>Innovación continua</h3><p>Experimentación con nuevas herramientas.</p></div>
-          </div>
-        </div>
+     </div>
+    </div>
+   </section><!-- IMPACTO EN EL APRENDIZAJE -->
+   <section id="impacto" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Impacto en el Aprendizaje</h2>
+     <p class="section-subtitle">Competencias que desarrollan nuestros estudiantes</p>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        🧠
+       </div>
+       <div class="card-title">
+        Pensamiento Crítico
+       </div>
+       <div class="card-text">
+        Analizar información desde múltiples perspectivas, cuestionar supuestos y fundamentar decisiones económicas con argumentos sólidos.
+       </div>
       </div>
-    </section>
-
-    <!-- RECURSOS -->
-    <section class="section" id="recursos">
-      <div class="container">
-        <div class="section-title">
-          <h2>Recursos Interactivos</h2>
-          <p>Herramientas educativas</p>
-        </div>
-
-        <div class="tools-grid">
-          <div class="tool"><div class="icon">🎮</div><div><p class="t">Juegos</p><p class="s">Dinámicas y retos</p></div></div>
-          <div class="tool"><div class="icon">📝</div><div><p class="t">Fichas</p><p class="s">Listas para imprimir</p></div></div>
-          <div class="tool"><div class="icon">✅</div><div><p class="t">Tests</p><p class="s">Autoevaluación</p></div></div>
-          <div class="tool"><div class="icon">🎨</div><div><p class="t">Ilustraciones</p><p class="s">Apoyo visual</p></div></div>
-          <div class="tool"><div class="icon">🏦</div><div><p class="t">Simulador de Mercado</p><p class="s">Oferta y demanda</p></div></div>
-          <div class="tool"><div class="icon">🏢</div><div><p class="t">CEO por un día</p><p class="s">Estrategia empresarial</p></div></div>
-          <div class="tool"><div class="icon">✈️</div><div><p class="t">Agencia de Viajes</p><p class="s">Paquetes y reservas</p></div></div>
-          <div class="tool"><div class="icon">💰</div><div><p class="t">Inversor Virtual</p><p class="s">Rentabilidad y riesgo</p></div></div>
-          <div class="tool"><div class="icon">📊</div><div><p class="t">Balance Challenge</p><p class="s">Puzzles contables</p></div></div>
-          <div class="tool"><div class="icon">📢</div><div><p class="t">Marketing Mix</p><p class="s">Impacto de campañas</p></div></div>
-          <div class="tool"><div class="icon">📚</div><div><p class="t">Biblioteca</p><p class="s">Recursos por temas</p></div></div>
-          <div class="tool"><div class="icon">🤖</div><div><p class="t">IA educativa</p><p class="s">Generación de materiales</p></div></div>
-        </div>
+      <div class="card">
+       <div class="card-icon">
+        📊
+       </div>
+       <div class="card-title">
+        Análisis Económico
+       </div>
+       <div class="card-text">
+        Interpretar datos, identificar tendencias de mercado, y comprender cómo funcionan los sistemas económicos en la práctica.
+       </div>
       </div>
-    </section>
-
-    <!-- PROMPTS -->
-    <section class="section" id="prompts">
-      <div class="container">
-        <div class="section-title">
-          <h2>Biblioteca de Prompts IA</h2>
-          <p>Más de 1500 prompts profesionales</p>
-        </div>
-
-        <div class="card card-pad prompts">
-          <div class="prompt-controls">
-            <input class="input" id="promptSearch" placeholder="Buscar prompts..." />
-            <select id="promptCategory">
-              <option value="Todas">Todas las categorías</option>
-              <option value="Economía">Economía</option>
-              <option value="Empresa">Empresa</option>
-              <option value="Contabilidad">Contabilidad</option>
-              <option value="Turismo">Turismo</option>
-            </select>
-            <select id="promptAI">
-              <option value="Todas">Todas las IAs</option>
-              <option value="chatgpt">chatgpt</option>
-              <option value="claude">claude</option>
-              <option value="gemini">gemini</option>
-              <option value="perplexity">perplexity</option>
-            </select>
-            <span class="smallnote" id="promptInfo">Mostrando 0 de 0 prompts</span>
-          </div>
-
-          <div class="prompt-list" id="promptList" aria-live="polite"></div>
-
-          <div class="smallnote">
-  Biblioteca cargada. Usa el buscador y los filtros para encontrar prompts rápidamente.
-</div>
-        </div>
+      <div class="card">
+       <div class="card-icon">
+        🎯
+       </div>
+       <div class="card-title">
+        Visión Empresarial
+       </div>
+       <div class="card-text">
+        Desarrollar mentalidad emprendedora, identificar oportunidades de negocio y evaluar viabilidad económica de proyectos.
+       </div>
       </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="section" id="contactar">
-      <div class="container">
-        <div class="section-title">
-          <h2>¿Interesado en mi perfil?</h2>
-          <p>Contacta conmigo</p>
-        </div>
-
-        <div class="contact">
-          <div class="info">
-            <h3>Información de contacto</h3>
-            <p><strong>Email:</strong> hola@juanpeco.es</p>
-            <p><strong>Teléfono:</strong> 647 033 746</p>
-            <p><strong>Redes sociales:</strong> (añade aquí enlaces)</p>
-
-            <hr class="sep" />
-
-            <p class="smallnote">
-              Para centros educativos: indica nombre, tipo de centro, email y el motivo del mensaje.
-            </p>
-          </div>
-
-          <form class="form" action="#" method="post" onsubmit="alert('Formulario de ejemplo. Conecto mailto o backend cuando quieras.'); return false;">
-            <div class="row">
-              <input class="input" name="centro" placeholder="Nombre del centro" />
-              <select name="tipo">
-                <option value="">Tipo de centro</option>
-                <option>IES</option>
-                <option>Colegio</option>
-                <option>Centro FP</option>
-                <option>Otro</option>
-              </select>
-            </div>
-            <div class="row">
-              <input class="input" name="email" placeholder="Email de contacto" />
-              <input class="input" name="persona" placeholder="Persona de contacto" />
-            </div>
-            <textarea class="input" name="mensaje" placeholder="Mensaje: ¿En qué puedo ayudarle?"></textarea>
-            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn primary" type="submit">Enviar mensaje</button>
-              <a class="btn" href="mailto:hola@juanpeco.es?subject=Contacto%20desde%20juanpeco.es">Enviar por email</a>
-            </div>
-          </form>
-        </div>
+      <div class="card">
+       <div class="card-icon">
+        🤝
+       </div>
+       <div class="card-title">
+        Trabajo en Equipo
+       </div>
+       <div class="card-text">
+        Colaborar en simulaciones empresariales, negociar, compartir responsabilidades y lograr objetivos comunes.
+       </div>
       </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container">
-        <div>juanpeco.es • <a href="mailto:hola@juanpeco.es">hola@juanpeco.es</a></div>
-        <div style="margin-top:6px;">© 2024 Juan Peco - Docente Especializado en Economía, Empresa y Turismo</div>
+      <div class="card">
+       <div class="card-icon">
+        💡
+       </div>
+       <div class="card-title">
+        Iniciativa y Creatividad
+       </div>
+       <div class="card-text">
+        Proponer soluciones innovadoras, tomar decisiones autónomas y adaptarse a cambios del entorno económico.
+       </div>
       </div>
-    </footer>
-
-  </main>
-
-  <script src="js/app.js"></script>
-</body>
+      <div class="card">
+       <div class="card-icon">
+        🚀
+       </div>
+       <div class="card-title">
+        Liderazgo y Gestión
+       </div>
+       <div class="card-text">
+        Dirigir equipos, organizar recursos, resolver conflictos y alcanzar objetivos bajo presión y cambios.
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- BIBLIOTECA DE PROMPTS -->
+   <section id="prompts" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Biblioteca de Prompts IA</h2>
+     <p class="section-subtitle">1500+ prompts listos para usar en clase</p>
+     <div class="filter-group">
+      <select onchange="filterPrompts()" id="categoryFilter"> <option value="">Todas las categorías</option> <option value="economía">Economía</option> <option value="empresa">Empresa</option> <option value="marketing">Marketing</option> <option value="turismo">Turismo</option> <option value="educación">Educación</option> </select> <select onchange="filterPrompts()" id="iaFilter"> <option value="">Todas las IA</option> <option value="ChatGPT">ChatGPT</option> <option value="Claude">Claude</option> <option value="Gemini">Gemini</option> <option value="Perplexity">Perplexity</option> </select> <select onchange="filterPrompts()" id="levelFilter"> <option value="">Todos los niveles</option> <option value="ESO">ESO</option> <option value="Bachillerato">Bachillerato</option> <option value="FP">FP</option> </select>
+     </div>
+     <div class="grid-4" id="promptsContainer"></div><button class="load-more-btn" id="loadMorePrompts" onclick="loadMorePrompts()">⬇ Mostrar más prompts</button>
+    </div>
+   </section><!-- BLOG -->
+   <section id="blog" class="section-pad bg-accent">
+    <div class="container">
+     <h2 class="section-title">Blog Educativo</h2>
+     <p class="section-subtitle">Artículos prácticos para docentes</p>
+     <div class="grid-3" id="blogContainer"></div><button class="load-more-btn" id="loadMoreBlog" onclick="loadMoreBlog()">⬇ Ver más artículos</button>
+    </div>
+   </section><!-- HERRAMIENTAS -->
+   <section id="herramientas" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Herramientas Interactivas</h2>
+     <p class="section-subtitle">Simuladores y generadores para tu clase</p>
+     <div class="grid-3">
+      <!-- Simulador Oferta-Demanda -->
+      <div class="card">
+       <div class="card-icon">
+        📊
+       </div>
+       <div class="card-title">
+        Simulador Oferta-Demanda
+       </div>
+       <div class="form-group">
+        <label>Precio (€): <span id="priceVal">10</span></label> <input type="range" id="priceSlider" min="1" max="20" value="10" onchange="updateOfferDemand()" style="margin-top: 0.5rem;">
+       </div>
+       <div style="background: #f0f6ff; padding: 1rem; border-radius: 8px; text-align: center;">
+        <p style="font-size: 0.85rem; color: #666;">Demanda: <strong id="demandVal">100</strong> unidades</p>
+        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">Oferta: <strong id="supplyVal">50</strong> unidades</p>
+        <p style="font-size: 0.75rem; color: #0066CC; font-weight: 600; margin-top: 0.75rem;" id="marketState">Déficit</p>
+       </div>
+      </div><!-- Quiz -->
+      <div class="card">
+       <div class="card-icon">
+        ❓
+       </div>
+       <div class="card-title">
+        Quiz Económico
+       </div>
+       <div id="quizContent">
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">3 preguntas sobre conceptos económicos</p><button class="btn btn-primary" style="width: 100%;" onclick="initQuiz()">Comenzar Quiz</button>
+       </div>
+      </div><!-- Generador Actividad -->
+      <div class="card">
+       <div class="card-icon">
+        📝
+       </div>
+       <div class="card-title">
+        Generador Actividad
+       </div>
+       <div class="form-group">
+        <input type="text" id="actTopic" placeholder="Tema (ej: Inflación)" style="margin-bottom: 0.5rem;"> <select id="actLevel" style="margin-bottom: 1rem;"> <option value="">Nivel...</option> <option value="ESO">ESO</option> <option value="Bachillerato">Bachillerato</option> <option value="FP">FP</option> </select> <button class="btn btn-primary" style="width: 100%;" onclick="generateActivity()">Generar</button>
+       </div>
+       <div id="actOutput" style="display: none; background: #f0f6ff; padding: 0.75rem; border-radius: 8px; font-size: 0.8rem; max-height: 150px; overflow-y: auto;"></div>
+      </div><!-- Generador Caso -->
+      <div class="card">
+       <div class="card-icon">
+        🏢
+       </div>
+       <div class="card-title">
+        Generador Caso
+       </div>
+       <div class="form-group">
+        <input type="text" id="caseSector" placeholder="Sector" style="margin-bottom: 0.5rem;"> <input type="text" id="caseProblem" placeholder="Desafío" style="margin-bottom: 1rem;"> <button class="btn btn-primary" style="width: 100%;" onclick="generateCase()">Generar</button>
+       </div>
+       <div id="caseOutput" style="display: none; background: #f0f6ff; padding: 0.75rem; border-radius: 8px; font-size: 0.8rem; max-height: 150px; overflow-y: auto;"></div>
+      </div><!-- Generador Rúbrica -->
+      <div class="card">
+       <div class="card-icon">
+        ✅
+       </div>
+       <div class="card-title">
+        Generador Rúbrica
+       </div>
+       <div class="form-group">
+        <input type="text" id="rubricTitle" placeholder="Competencia a evaluar" style="margin-bottom: 1rem;"> <button class="btn btn-primary" style="width: 100%;" onclick="generateRubric()">Generar</button>
+       </div>
+       <div id="rubricOutput" style="display: none; background: #f0f6ff; padding: 0.75rem; border-radius: 8px; font-size: 0.8rem; max-height: 150px; overflow-y: auto;"></div>
+      </div><!-- Generador Examen -->
+      <div class="card">
+       <div class="card-icon">
+        📋
+       </div>
+       <div class="card-title">
+        Generador Examen
+       </div>
+       <div class="form-group">
+        <input type="text" id="examTopic" placeholder="Tema" style="margin-bottom: 0.5rem;"> <select id="examLevel" style="margin-bottom: 1rem;"> <option value="">Nivel...</option> <option value="ESO">ESO</option> <option value="Bachillerato">Bachillerato</option> <option value="FP">FP</option> </select> <button class="btn btn-primary" style="width: 100%;" onclick="generateExam()">Generar</button>
+       </div>
+       <div id="examOutput" style="display: none; background: #f0f6ff; padding: 0.75rem; border-radius: 8px; font-size: 0.8rem; max-height: 150px; overflow-y: auto;"></div>
+      </div>
+     </div>
+    </div>
+   </section><!-- INNOVACIÓN EDUCATIVA EN CENTROS -->
+   <section id="codigo-escuela" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Innovación Educativa en Centros</h2>
+     <p class="section-subtitle">Código Escuela 4.0 · Innovación en el aula</p>
+     <div style="background: linear-gradient(135deg, #f5f9ff, #ffffff); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(0,102,204,0.15); max-width: 900px; margin: 0 auto; margin-bottom: 3rem;">
+      <p style="font-size: 1.05rem; color: #374151; line-height: 1.9; margin-bottom: 1.5rem;">Participo activamente en el programa <strong>Código Escuela 4.0</strong>, trabajando con colegios de educación infantil y primaria para integrar tecnología, pensamiento computacional y herramientas digitales en el aula. Mi objetivo es preparar a estudiantes desde edades tempranas para un mundo cada vez más digitalizado, desarrollando habilidades críticas de resolución de problemas y creatividad.</p>
+      <div style="background: white; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #7c3aed; display: flex; align-items: center; gap: 1rem;">
+       <div style="font-size: 2rem;">
+        🏫
+       </div>
+       <div>
+        <div style="font-weight: 700; color: #0a0e27; margin-bottom: 0.25rem;">
+         Colaboración Activa
+        </div>
+        <div style="color: #666; font-size: 0.95rem;">
+         Actualmente trabajando con <strong>más de 15 centros educativos</strong> en transformación digital y pensamiento computacional.
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        🧠
+       </div>
+       <div class="card-title">
+        Pensamiento Computacional
+       </div>
+       <div class="card-text">
+        Desarrollar capacidad lógica y resolución de problemas a través de actividades de programación, robótica y descomposición de problemas complejos.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        💻
+       </div>
+       <div class="card-title">
+        Tecnología Educativa
+       </div>
+       <div class="card-text">
+        Integración de herramientas digitales, plataformas educativas y recursos tecnológicos que potencian el aprendizaje en el aula.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        🤝
+       </div>
+       <div class="card-title">
+        Acompañamiento Docente
+       </div>
+       <div class="card-text">
+        Formación y soporte continuo a equipos educativos para implementar metodologías innovadoras y maximizar el impacto de la transformación digital.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        🚀
+       </div>
+       <div class="card-title">
+        Innovación en Centros
+       </div>
+       <div class="card-text">
+        Proyectos de transformación integral de centros educativos, creando ecosistemas de innovación permanente y cultura de mejora continua.
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- EXPERIENCIAS EN EL AULA -->
+   <section id="experiencias" class="section-pad bg-accent">
+    <div class="container">
+     <h2 class="section-title">Experiencias en el Aula</h2>
+     <p class="section-subtitle">Actividades educativas que transforman el aprendizaje</p>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        📊
+       </div>
+       <div class="card-title">
+        Simulación de Mercado
+       </div>
+       <div class="card-text">
+        Estudiantes comprenden oferta, demanda y equilibrio a través de interacción dinámica con variables reales.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        🏢
+       </div>
+       <div class="card-title">
+        Empresa Virtual
+       </div>
+       <div class="card-text">
+        Estudiantes actúan como CEOs: crean empresa, gestionan recursos, toman decisiones estratégicas.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        💰
+       </div>
+       <div class="card-title">
+        Análisis de Inversiones
+       </div>
+       <div class="card-text">
+        Evalúan proyectos reales, calculan rentabilidad y aprenden gestión financiera con casos prácticos.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        ✈️
+       </div>
+       <div class="card-title">
+        Proyectos Turísticos
+       </div>
+       <div class="card-text">
+        Diseño y comercialización de experiencias turísticas innovadoras, sostenibles y rentables.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        📈
+       </div>
+       <div class="card-title">
+        Casos Empresariales
+       </div>
+       <div class="card-text">
+        Estudio profundo de empresas reales: estrategia, resultados, desafíos y lecciones aplicables.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        🎮
+       </div>
+       <div class="card-title">
+        Aprendizaje Gamificado
+       </div>
+       <div class="card-text">
+        Juegos interactivos que hacen el aprendizaje económico divertido, motivador y memorable.
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- INNOVACIÓN EDUCATIVA -->
+   <section id="innovacion" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">Innovación Educativa</h2>
+     <p class="section-subtitle">Tecnología e inteligencia artificial al servicio del aprendizaje</p>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        🤖
+       </div>
+       <div class="card-title">
+        Inteligencia Artificial
+       </div>
+       <div class="card-text">
+        Herramientas IA para personalizar el aprendizaje, crear recursos dinámicos, potenciar creatividad y automatizar tareas administrativas.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        🎯
+       </div>
+       <div class="card-title">
+        Simulaciones Económicas
+       </div>
+       <div class="card-text">
+        Entornos virtuales donde estudiantes experimentan decisiones económicas reales sin riesgos, aprendiendo de sus errores.
+       </div>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        💻
+       </div>
+       <div class="card-title">
+        Aprendizaje Interactivo
+       </div>
+       <div class="card-text">
+        Plataformas digitales, ejercicios prácticos en tiempo real y retroalimentación inmediata que mantiene el engagement.
+       </div>
+      </div>
+     </div>
+     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,102,204,0.15);">
+      <p style="font-size: 1.05rem; color: #374151; line-height: 1.9; max-width: 900px; margin: 0 auto;">La innovación educativa no es solo tecnología, es transformar cómo aprendemos. Integro IA, simulaciones y herramientas digitales para crear experiencias que conectan teoría con práctica, preparando estudiantes que comprenden el mundo real y saben actuar en él.</p>
+     </div>
+    </div>
+   </section><!-- ESPECIALIDADES -->
+   <section id="especialidades" class="section-pad bg-accent">
+    <div class="container">
+     <h2 class="section-title">Especialidades</h2>
+     <p class="section-subtitle">Experto en educación integral</p>
+     <div class="grid-3">
+      <div class="card">
+       <div class="card-icon">
+        📊
+       </div>
+       <div class="card-title">
+        Economía
+       </div>
+       <ul style="color: #666; font-size: 0.9rem; line-height: 1.8;">
+        <li>✓ Micro y Macroeconomía</li>
+        <li>✓ Análisis de mercados</li>
+        <li>✓ Simulaciones económicas</li>
+        <li>✓ Finanzas e inversión</li>
+       </ul>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        💼
+       </div>
+       <div class="card-title">
+        Empresa
+       </div>
+       <ul style="color: #666; font-size: 0.9rem; line-height: 1.8;">
+        <li>✓ Emprendimiento</li>
+        <li>✓ Modelos de negocio</li>
+        <li>✓ Marketing estratégico</li>
+        <li>✓ Gestión empresarial</li>
+       </ul>
+      </div>
+      <div class="card">
+       <div class="card-icon">
+        ✈️
+       </div>
+       <div class="card-title">
+        Turismo
+       </div>
+       <ul style="color: #666; font-size: 0.9rem; line-height: 1.8;">
+        <li>✓ Gestión de destinos</li>
+        <li>✓ Marketing turístico</li>
+        <li>✓ Experiencias inmersivas</li>
+        <li>✓ Sostenibilidad</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- CONTACTO -->
+   <section id="contacto" class="section-pad">
+    <div class="container">
+     <h2 class="section-title">¿Quieres colaborar?</h2>
+     <p class="section-subtitle">Cuéntame sobre tu centro educativo</p>
+     <div style="max-width: 600px; margin: 0 auto;">
+      <form onsubmit="handleFormSubmit(event)" style="margin-bottom: 3rem;">
+       <div class="form-group">
+        <label>Centro Educativo</label> <input type="text" required placeholder="Nombre del centro">
+       </div>
+       <div class="form-group">
+        <label>Tipo de Centro</label> <select required> <option value="">Seleccionar...</option> <option value="público">Público</option> <option value="privado">Privado</option> <option value="concertado">Concertado</option> </select>
+       </div>
+       <div class="form-group">
+        <label>Email</label> <input type="email" required placeholder="tu@email.com">
+       </div>
+       <div class="form-group">
+        <label>Mensaje</label> <textarea required placeholder="Cuéntame sobre tu centro y tu interés..." rows="5"></textarea>
+       </div><button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje</button>
+      </form>
+      <div id="formSuccess" style="display: none; background: #DCFCE7; color: #166534; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600; margin-bottom: 2rem;">
+       ✓ Mensaje enviado. Me pondré en contacto pronto.
+      </div>
+      <div class="divider"></div>
+      <div style="text-align: center;">
+       <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">También puedes contactarme directamente:</p>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+        <div>
+         <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+          📧
+         </div>
+         <p style="font-weight: 600; color: #0066CC;" id="contact-email">hola@juanpeco.es</p>
+        </div>
+        <div>
+         <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+          📱
+         </div>
+         <p style="font-weight: 600; color: #0066CC;" id="contact-phone">647 03 37 46</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main><!-- FOOTER -->
+  <footer>
+   <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <p style="margin-bottom: 0.5rem;" id="footer-text">© 2025 Juan Peco. Docente especializado en Economía, Empresa y Turismo.</p>
+    <p style="color: #aaa; font-size: 0.9rem;">Innovación educativa + IA aplicada + Metodología activa</p>
+    <p style="color: #aaa; font-size: 0.85rem; margin-top: 1rem;">📧 hola@juanpeco.es • 📱 647 03 37 46 • 🔗 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="color: #00B4D8;">LinkedIn: @juanpeco</a></p>
+   </div>
+  </footer>
+  <script>
+        // MENÚ MÓVIL
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+        
+        // BASE DE DATOS PROMPTS (1500+ simulados con 50 reales)
+        const allPrompts = [
+            { title: "Cómo usar ChatGPT para crear actividades de economía", desc: "Genera actividades sobre inflación, oferta y demanda", cat: "economía", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "10 prompts de IA que todo profesor debe conocer", desc: "Colección de prompts optimizados para docencia", cat: "educación", ia: "ChatGPT", level: "Docentes" },
+            { title: "Actividad para explicar PIB en 30 minutos", desc: "Simulación interactiva del concepto PIB", cat: "economía", ia: "Claude", level: "ESO" },
+            { title: "Proyecto de empresa paso a paso", desc: "Guía completa para desarrollar simulación empresarial", cat: "empresa", ia: "ChatGPT", level: "FP" },
+            { title: "Generador de casos empresariales", desc: "Crea casos realistas para análisis", cat: "empresa", ia: "Gemini", level: "Bachillerato" },
+            { title: "Marketing digital: 5 estrategias para estudiantes", desc: "Actividades prácticas de marketing", cat: "marketing", ia: "Perplexity", level: "FP" },
+            { title: "Diseño de producto turístico", desc: "Guía para crear experiencias turísticas", cat: "turismo", ia: "Claude", level: "FP" },
+            { title: "Análisis de rentabilidad empresarial", desc: "Cálculo de ROI y margen", cat: "empresa", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "Emprendimiento: del concepto al mercado", desc: "Ruta completa para proyectos de emprendimiento", cat: "empresa", ia: "ChatGPT", level: "FP" },
+            { title: "Economía circular y sostenibilidad", desc: "Actividad sobre modelos económicos sostenibles", cat: "economía", ia: "Claude", level: "Bachillerato" },
+            { title: "Segmentación de mercado avanzada", desc: "Identifica y analiza segmentos", cat: "marketing", ia: "Gemini", level: "Universidad" },
+            { title: "Negociación empresarial: dinámica de clase", desc: "Ejercicio de negociación con roles", cat: "empresa", ia: "ChatGPT", level: "FP" },
+            { title: "Economía global: comercio internacional", desc: "Simulación de tratados comerciales", cat: "economía", ia: "Perplexity", level: "Bachillerato" },
+            { title: "Análisis de competencia y FODA", desc: "Matriz completa de análisis estratégico", cat: "empresa", ia: "Claude", level: "FP" },
+            { title: "Turismo gastronómico: proyecto educativo", desc: "Crear experiencias turísticas gastronómicas", cat: "turismo", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "Decisiones empresariales con datos", desc: "Toma de decisiones basada en análisis", cat: "empresa", ia: "Gemini", level: "Universidad" },
+            { title: "Marketing en redes sociales para marcas jóvenes", desc: "Estrategia de social media", cat: "marketing", ia: "ChatGPT", level: "FP" },
+            { title: "Finanzas personales: presupuesto familiar", desc: "Actividad sobre gestión financiera personal", cat: "economía", ia: "Claude", level: "ESO" },
+            { title: "Innovación en empresas: disrupción digital", desc: "Cómo la tecnología transforma mercados", cat: "empresa", ia: "Perplexity", level: "Bachillerato" },
+            { title: "Destinos turísticos: análisis de sostenibilidad", desc: "Evaluación del impacto turístico", cat: "turismo", ia: "Claude", level: "FP" },
+            { title: "Economía del comportamiento: sesgos cognitivos", desc: "Cómo nuestros sesgos afectan decisiones", cat: "economía", ia: "Gemini", level: "Universidad" },
+            { title: "Plan de marketing completo: from scratch", desc: "Metodología completa de marketing", cat: "marketing", ia: "ChatGPT", level: "FP" },
+            { title: "Emprendimiento social: negocio con impacto", desc: "Empresas que generan cambio social", cat: "empresa", ia: "Claude", level: "Bachillerato" },
+            { title: "Turismo de experiencias: diseño emocional", desc: "Crear experiencias memorables", cat: "turismo", ia: "ChatGPT", level: "FP" },
+            { title: "Análisis de tendencias de mercado", desc: "Identificar oportunidades con datos", cat: "marketing", ia: "Perplexity", level: "Universidad" },
+            { title: "Gestión de crisis empresarial", desc: "Cómo responder a problemas de reputación", cat: "empresa", ia: "Gemini", level: "Bachillerato" },
+            { title: "Inflación y su impacto económico", desc: "Actividad sobre inflación y precios", cat: "economía", ia: "ChatGPT", level: "ESO" },
+            { title: "Branding: identidad de marca", desc: "Construcción de identidad corporativa", cat: "marketing", ia: "Claude", level: "FP" },
+            { title: "Turismo cultural: preservación y desarrollo", desc: "Equilibrio entre turismo y conservación", cat: "turismo", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "Cadena de valor: análisis de Porter", desc: "Desglosa la cadena de valor empresarial", cat: "empresa", ia: "Gemini", level: "Universidad" },
+            { title: "Economía verde y emprendimiento sostenible", desc: "Negocios que cuidan el planeta", cat: "economía", ia: "Perplexity", level: "FP" },
+            { title: "Precio y estrategia de precios", desc: "Modelos de fijación de precios", cat: "marketing", ia: "Claude", level: "Bachillerato" },
+            { title: "Modelos de negocio innovadores", desc: "Canvas de modelo de negocio", cat: "empresa", ia: "ChatGPT", level: "FP" },
+            { title: "Turismo digital: metaverso y experiencias", desc: "Tecnología en experiencias turísticas", cat: "turismo", ia: "Gemini", level: "Universidad" },
+            { title: "Desempleo y políticas de empleo", desc: "Actividad sobre mercado laboral", cat: "economía", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "Customer journey mapping", desc: "Mapea la experiencia del cliente", cat: "marketing", ia: "Claude", level: "FP" },
+            { title: "Competitividad empresarial", desc: "Estrategias para ser competitivos", cat: "empresa", ia: "Perplexity", level: "Universidad" },
+            { title: "Turismo de negocios: eventos y congresos", desc: "Gestión de eventos corporativos", cat: "turismo", ia: "ChatGPT", level: "FP" },
+            { title: "Comercio electrónico: oportunidades", desc: "E-commerce como modelo de negocio", cat: "empresa", ia: "Gemini", level: "Bachillerato" },
+            { title: "Publicidad e impacto psicológico", desc: "Cómo funciona la publicidad", cat: "marketing", ia: "Claude", level: "ESO" },
+            { title: "Inversión inmobiliaria: rentabilidad", desc: "Análisis de inversión en inmuebles", cat: "economía", ia: "ChatGPT", level: "Bachillerato" },
+            { title: "RSC: Responsabilidad Social Corporativa", desc: "Impacto social de la empresa", cat: "empresa", ia: "Perplexity", level: "FP" },
+            { title: "Turismo y tradición: preservación cultural", desc: "Cómo el turismo preserva culturas", cat: "turismo", ia: "Claude", level: "Bachillerato" },
+            { title: "Dinámicas de liderazgo empresarial", desc: "Estilos de liderazgo y efectividad", cat: "empresa", ia: "Gemini", level: "Universidad" },
+            { title: "Estrategia de distribución: canales", desc: "Canales de distribución y logística", cat: "marketing", ia: "ChatGPT", level: "FP" },
+            { title: "Recursos naturales y economía", desc: "Explotación sostenible de recursos", cat: "economía", ia: "Claude", level: "Bachillerato" },
+            { title: "Propuesta de valor: diferenciación", desc: "Cómo diferenciarse en el mercado", cat: "empresa", ia: "Perplexity", level: "FP" },
+            { title: "Seguridad alimentaria en turismo", desc: "Calidad y seguridad en gastronomía turística", cat: "turismo", ia: "ChatGPT", level: "ESO" },
+            { title: "Alianzas estratégicas y joint ventures", desc: "Colaboraciones empresariales", cat: "empresa", ia: "Gemini", level: "Universidad" },
+            { title: "Community management: gestión de comunidad", desc: "Estrategia de redes sociales", cat: "marketing", ia: "Claude", level: "FP" }
+        ];
+        
+        // BLOG (30 artículos)
+        const allBlog = [
+            { icon: "🤖", title: "Cómo usar ChatGPT para crear actividades de economía", summary: "Guía práctica para generar actividades con IA en tiempo récord." },
+            { icon: "💡", title: "10 prompts de IA que todo profesor debería conocer", summary: "Colección de prompts optimizados para preparación de clases." },
+            { icon: "📊", title: "Actividad para explicar oferta y demanda en clase", summary: "Estrategia interactiva para que estudiantes comprendan equilibrio." },
+            { icon: "🎯", title: "Proyecto de empresa para estudiantes paso a paso", summary: "Guía completa para desarrollar proyecto empresarial." },
+            { icon: "🤖", title: "Cómo usar inteligencia artificial para preparar clases", summary: "Integración de herramientas IA en planificación educativa." },
+            { icon: "📈", title: "Actividad práctica para explicar la inflación", summary: "Simulación interactiva que deja clara la inflación." },
+            { icon: "📊", title: "Cómo enseñar economía con simulaciones", summary: "Metodología basada en simuladores para aprendizaje activo." },
+            { icon: "📢", title: "Actividad de marketing para estudiantes", summary: "Proyecto real donde estudiantes diseñan campaña completa." },
+            { icon: "🚀", title: "Proyecto de emprendimiento en FP", summary: "Modelo completo para ciclos formativos." },
+            { icon: "📰", title: "Actividad para analizar noticias económicas", summary: "Estrategia para desarrollar pensamiento crítico." },
+            { icon: "🎓", title: "Innovación educativa: nuevas metodologías docentes", summary: "Exploración de tendencias educativas actuales." },
+            { icon: "💼", title: "Casos de éxito empresarial para analizar", summary: "Recopilación de empresas innovadoras." },
+            { icon: "🌍", title: "Turismo sostenible: proyecto educativo", summary: "Cómo enseñar turismo responsable." },
+            { icon: "📊", title: "Simulador de mercado: guía de implementación", summary: "Cómo crear un simulador efectivo." },
+            { icon: "🎮", title: "Gamificación educativa en economía", summary: "Técnicas para hacer aprendizaje divertido." },
+            { icon: "🤖", title: "Automatización con IA en procesos empresariales", summary: "IA transforma empresa e implicaciones educativas." },
+            { icon: "📈", title: "Análisis de rentabilidad: actividad práctica", summary: "Proyecto para calcular rentabilidad real." },
+            { icon: "💰", title: "Finanzas personales: actividad práctica", summary: "Cómo enseñar gestión de dinero." },
+            { icon: "🌐", title: "Comercio internacional: simulación en clase", summary: "Proyecto negociación de tratados." },
+            { icon: "🏆", title: "Competiciones académicas de economía", summary: "Ideas para competiciones motivadoras." },
+            { icon: "📱", title: "Marketing digital: estrategia para docentes", summary: "Cómo enseñar marketing digital." },
+            { icon: "🎯", title: "Segmentación de mercado: actividad educativa", summary: "Proyecto para comprender clientes." },
+            { icon: "✈️", title: "Diseño de producto turístico: paso a paso", summary: "Cómo guiar en crear experiencias." },
+            { icon: "📊", title: "Análisis de datos para tomar decisiones", summary: "Metodología data literacy." },
+            { icon: "🤝", title: "Negociación empresarial: dinámicas de clase", summary: "Ejercicios de negociación." },
+            { icon: "💡", title: "Creatividad e innovación en el aula", summary: "Técnicas para pensamiento creativo." },
+            { icon: "🎓", title: "Formación de competencias del siglo XXI", summary: "Habilidades clave para el futuro." },
+            { icon: "🌍", title: "Economía global: perspectivas educativas", summary: "Cómo enseñar interdependencia." },
+            { icon: "🚀", title: "Startups en el aula: modelo educativo", summary: "Programa para incubar ideas." },
+            { icon: "📈", title: "Indicadores económicos: interpretación práctica", summary: "PIB, desempleo, inflación con ejemplos." }
+        ];
+        
+        let promptsShown = 12;
+        let blogShown = 6;
+        
+        // RENDERIZAR PROMPTS
+        function renderPrompts() {
+            const container = document.getElementById('promptsContainer');
+            const toShow = allPrompts.slice(0, promptsShown);
+            container.innerHTML = toShow.map(p => `
+                <div class="card">
+                    <span class="badge badge-${p.cat}">${p.cat}</span>
+                    <div class="card-title" style="margin-top: 0.75rem; font-size: 0.95rem;">${p.title}</div>
+                    <div class="card-text" style="font-size: 0.85rem; margin-bottom: 1rem;">${p.desc}</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem;">
+                        <span style="background: #f0f6ff; color: #0066CC; padding: 0.25rem 0.5rem; border-radius: 4px;">🤖 ${p.ia}</span>
+                        <span style="background: #f0f6ff; color: #0066CC; padding: 0.25rem 0.5rem; border-radius: 4px;">⭐ ${p.level}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('loadMorePrompts').style.display = promptsShown >= allPrompts.length ? 'none' : 'block';
+        }
+        
+        function loadMorePrompts() {
+            promptsShown += 12;
+            renderPrompts();
+        }
+        
+        function filterPrompts() {
+            const cat = document.getElementById('categoryFilter').value;
+            const ia = document.getElementById('iaFilter').value;
+            const level = document.getElementById('levelFilter').value;
+            
+            const filtered = allPrompts.filter(p => 
+                (!cat || p.cat === cat) &&
+                (!ia || p.ia === ia) &&
+                (!level || p.level === level)
+            );
+            
+            const container = document.getElementById('promptsContainer');
+            container.innerHTML = filtered.slice(0, 12).map(p => `
+                <div class="card">
+                    <span class="badge badge-${p.cat}">${p.cat}</span>
+                    <div class="card-title" style="margin-top: 0.75rem; font-size: 0.95rem;">${p.title}</div>
+                    <div class="card-text" style="font-size: 0.85rem; margin-bottom: 1rem;">${p.desc}</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem;">
+                        <span style="background: #f0f6ff; color: #0066CC; padding: 0.25rem 0.5rem; border-radius: 4px;">🤖 ${p.ia}</span>
+                        <span style="background: #f0f6ff; color: #0066CC; padding: 0.25rem 0.5rem; border-radius: 4px;">⭐ ${p.level}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // RENDERIZAR BLOG
+        function renderBlog() {
+            const container = document.getElementById('blogContainer');
+            const toShow = allBlog.slice(0, blogShown);
+            container.innerHTML = toShow.map(b => `
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">${b.icon}</div>
+                    <div class="card-title">${b.title}</div>
+                    <div class="card-text">${b.summary}</div>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem; font-size: 0.85rem;">Leer artículo</button>
+                </div>
+            `).join('');
+            document.getElementById('loadMoreBlog').style.display = blogShown >= allBlog.length ? 'none' : 'block';
+        }
+        
+        function loadMoreBlog() {
+            blogShown += 6;
+            renderBlog();
+        }
+        
+        // HERRAMIENTAS
+        function updateOfferDemand() {
+            const price = parseInt(document.getElementById('priceSlider').value);
+            document.getElementById('priceVal').textContent = price;
+            const demand = Math.round(150 - price * 5);
+            const supply = Math.round(20 + price * 3);
+            document.getElementById('demandVal').textContent = demand;
+            document.getElementById('supplyVal').textContent = supply;
+            const state = demand > supply ? 'Déficit' : demand < supply ? 'Superávit' : 'Equilibrio';
+            document.getElementById('marketState').textContent = state;
+        }
+        
+        const quizzes = [
+            { q: "¿Qué es el PIB?", opts: ["Producto Interno Bruto", "Precio Internacional Base", "Producto Interno Bimestral"], c: 0 },
+            { q: "¿Cuál es efecto de inflación?", opts: ["Sube el poder adquisitivo", "Baja el poder adquisitivo", "No hay cambio"], c: 1 },
+            { q: "¿Demanda significa?", opts: ["Lo que venden", "Lo que compran", "Lo que producen"], c: 1 }
+        ];
+        let quizIdx = 0, quizScore = 0;
+        
+        function initQuiz() {
+            quizIdx = 0;
+            quizScore = 0;
+            showQuiz();
+        }
+        
+        function showQuiz() {
+            if (quizIdx < quizzes.length) {
+                const q = quizzes[quizIdx];
+                document.getElementById('quizContent').innerHTML = `
+                    <p style="font-weight: 600; margin-bottom: 1rem;">${q.q}</p>
+                    ${q.opts.map((opt, i) => `<button onclick="checkQuiz(${i})" style="display: block; width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; background: white; cursor: pointer; text-align: left; transition: all 0.3s;" onmouseover="this.style.background='#f0f6ff'" onmouseout="this.style.background='white'">${opt}</button>`).join('')}
+                `;
+            }
+        }
+        
+        function checkQuiz(i) {
+            if (i === quizzes[quizIdx].c) quizScore++;
+            quizIdx++;
+            if (quizIdx < quizzes.length) showQuiz();
+            else document.getElementById('quizContent').innerHTML = `<p style="font-weight: 600; text-align: center;">¡Resultado: ${quizScore}/${quizzes.length}!</p><button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="initQuiz()">Hacer de nuevo</button>`;
+        }
+        
+        function generateActivity() {
+            const topic = document.getElementById('actTopic').value || 'Economía';
+            const level = document.getElementById('actLevel').value || 'Bachillerato';
+            const text = `ACTIVIDAD: ${topic}\nNivel: ${level}\n\n📚 Introduce un problema real sobre ${topic}.\n\n💡 Explica conceptos con ejemplos.\n\n✏️ Actividad:\n- Fase 1: Presenta (10 min)\n- Fase 2: Analiza (15 min)\n- Fase 3: Debate (10 min)\n\n🎯 Objetivos:\n✓ Comprender ${topic}\n✓ Aplicar a casos reales`;
+            document.getElementById('actOutput').textContent = text;
+            document.getElementById('actOutput').style.display = 'block';
+        }
+        
+        function generateCase() {
+            const sector = document.getElementById('caseSector').value || 'Tecnología';
+            const problem = document.getElementById('caseProblem').value || 'Rentabilidad';
+            const text = `CASO: ${sector}\n\n📋 CONTEXTO\nEmpresa en sector ${sector}.\n\n⚠️ DESAFÍO: ${problem}\n\n💰 DATOS\n- Ingresos: €500K\n- Costes: €300K\n- Margen: 40%\n\n🎯 PREGUNTAS\n1. ¿Causa raíz?\n2. ¿Soluciones?\n3. ¿Impacto financiero?`;
+            document.getElementById('caseOutput').textContent = text;
+            document.getElementById('caseOutput').style.display = 'block';
+        }
+        
+        function generateRubric() {
+            const title = document.getElementById('rubricTitle').value || 'Competencia';
+            const text = `RÚBRICA: ${title}\n\n📊 CRITERIOS\n\nExcelente (4):\n✓ Domina completamente\n✓ Aplicación avanzada\n\nBueno (3):\n✓ Comprende bien\n✓ Aplicación correcta\n\nAceptable (2):\n✓ Comprende básicamente\n✓ Con ayuda\n\nNecesita mejorar (1):\n✓ Comprensión limitada`;
+            document.getElementById('rubricOutput').textContent = text;
+            document.getElementById('rubricOutput').style.display = 'block';
+        }
+        
+        function generateExam() {
+            const topic = document.getElementById('examTopic').value || 'Economía';
+            const level = document.getElementById('examLevel').value || 'Bachillerato';
+            const text = `EXAMEN: ${topic}\nNivel: ${level}\nDuración: 60 min\n\nPARTE 1: TEST (5 preguntas × 1pt)\n\nPARTE 2: DESARROLLO (2 preguntas × 2.5pt)\n\nPARTE 3: CASO (1 ejercicio × 2.5pt)\n\nTOTAL: 10 puntos`;
+            document.getElementById('examOutput').textContent = text;
+            document.getElementById('examOutput').style.display = 'block';
+        }
+        
+        // FORMULARIO
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            document.getElementById('formSuccess').style.display = 'block';
+            event.target.reset();
+            setTimeout(() => {
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 3000);
+        }
+        
+        // DEBATES DIRIGIDOS
+        const debateDetails = {
+            0: {
+                posicion1: "✅ A favor: La globalización crea eficiencia, reduce costes y permite acceso a mejores productos.",
+                posicion2: "❌ En contra: Desplaza empleos locales, concentra riqueza y erosiona culturas tradicionales.",
+                preguntas: ["¿Quién gana y quién pierde?", "¿Cómo proteger economías locales?", "¿Alternativas viables?"]
+            },
+            1: {
+                posicion1: "✅ A favor: Reduce pobreza, genera demanda interna y simplifica burocracia asistencial.",
+                posicion2: "❌ En contra: Insostenible económicamente, reduce incentivos al trabajo y causa inflación.",
+                preguntas: ["¿Cuánto costaría?", "¿Cambiaría el comportamiento laboral?", "¿Experiencias internacionales?"]
+            },
+            2: {
+                posicion1: "✅ A favor: Preserva recursos, reduce desperdicios y es rentable a largo plazo.",
+                posicion2: "❌ En contra: Requiere inversión inicial, cambia hábitos de consumo y es menos competitiva.",
+                preguntas: ["¿Caso de éxito real?", "¿Rentabilidad vs. sostenibilidad?", "¿Transición viable?"]
+            },
+            3: {
+                posicion1: "✅ A favor: Crea empleos en nuevos sectores, aumenta productividad y mejora competitividad.",
+                posicion2: "❌ En contra: Destruye empleos de bajo nivel, aumenta desigualdad y requiere re-cualificación.",
+                preguntas: ["¿Qué empleos desaparecen?", "¿Quiénes son los afectados?", "¿Políticas de adaptación?"]
+            },
+            4: {
+                posicion1: "✅ A favor: Las grandes plataformas abusam, evitan impuestos y distorsionan competencia.",
+                posicion2: "❌ En contra: La regulación frena innovación y hace la economía menos flexible.",
+                preguntas: ["¿Cómo competir con gigantes?", "¿Impuestos justos?", "¿Datos de usuarios?"]
+            },
+            5: {
+                posicion1: "✅ A favor: Genera ingresos pero agota recursos culturales, ambientales y locales.",
+                posicion2: "❌ En contra: Sin turismo de masas, muchas economías colapsan. Necesitamos ingresos.",
+                preguntas: ["¿Capacidad de carga?", "¿Turismo regenerativo?", "¿Distribución justa?"]
+            }
+        };
+        
+        function toggleDebateDetail(button) {
+            const card = button.parentElement;
+            const index = Array.from(document.querySelectorAll('.grid-3:nth-child(2) button')).indexOf(button);
+            const debate = debateDetails[index];
+            
+            if (card.querySelector('.debate-expanded')) {
+                card.querySelector('.debate-expanded').remove();
+                button.textContent = '📂 Ver debate';
+            } else {
+                const expanded = document.createElement('div');
+                expanded.className = 'debate-expanded';
+                expanded.style.cssText = 'margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,102,204,0.1); font-size: 0.85rem; color: #666;';
+                expanded.innerHTML = `
+                    <div style="margin-bottom: 0.75rem;"><strong style="color: #0066CC;">${debate.posicion1}</strong></div>
+                    <div style="margin-bottom: 1rem;"><strong style="color: #0066CC;">${debate.posicion2}</strong></div>
+                    <div style="background: #f5f9ff; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #0066CC;">
+                        <div style="font-weight: 600; color: #0a0e27; margin-bottom: 0.5rem;">💭 Preguntas para el debate:</div>
+                        ${debate.preguntas.map(p => `<div style="margin: 0.25rem 0;">• ${p}</div>`).join('')}
+                    </div>
+                `;
+                card.appendChild(expanded);
+                button.textContent = '📂 Ocultar debate';
+            }
+        }
+        
+        // ELEMENT SDK
+        let config = {
+            hero_title: "Docente de Administración de Empresas, Economía e Innovación Educativa",
+            hero_subtitle: "IA educativa, simulaciones empresariales y metodologías activas aplicadas a Bachillerato y Formación Profesional.",
+            hero_description: "Desarrollo experiencias de aprendizaje basadas en simulaciones económicas, inteligencia artificial y proyectos empresariales reales. Además participo en el programa Código Escuela 4.0, acompañando a centros educativos en la integración de tecnología en el aula.",
+            about_text: "Soy docente especializado en Economía, Empresa y Turismo con un enfoque centrado en la innovación educativa y la aplicación de herramientas tecnológicas en el aula. Mi objetivo es que los estudiantes comprendan que se van a encontrar en el mercado laboral y cómo funciona la economía a través de experiencias prácticas, simulaciones y proyectos aplicados a situaciones reales.",
+            vision_text: "La educación en economía, empresa y turismo debe conectar con la realidad del mundo profesional. Mi enfoque docente combina metodologías activas, análisis de casos empresariales, simulaciones económicas y herramientas de inteligencia artificial.",
+            contact_email: "hola@juanpeco.es",
+            contact_phone: "647 03 37 46",
+            footer_text: "© 2025 Juan Peco. Docente especializado en Economía, Empresa y Turismo."
+        };
+        
+        window.elementSdk.init({
+            defaultConfig: config,
+            onConfigChange: async (newConfig) => {
+                config = { ...config, ...newConfig };
+                document.getElementById('hero-title').textContent = config.hero_title;
+                document.getElementById('hero-subtitle').textContent = config.hero_subtitle;
+                if (document.getElementById('hero-description')) {
+                    document.getElementById('hero-description').textContent = config.hero_description;
+                }
+                document.getElementById('about-text').textContent = config.about_text;
+                document.getElementById('vision-text').textContent = config.vision_text;
+                document.getElementById('contact-email').textContent = config.contact_email;
+                document.getElementById('contact-phone').textContent = config.contact_phone;
+            },
+            mapToCapabilities: () => ({ recolorables: [], borderables: [], fontEditable: undefined, fontSizeable: undefined }),
+            mapToEditPanelValues: () => new Map([
+                ["hero_title", config.hero_title],
+                ["hero_subtitle", config.hero_subtitle],
+                ["hero_description", config.hero_description],
+                ["about_text", config.about_text],
+                ["vision_text", config.vision_text],
+                ["contact_email", config.contact_email],
+                ["contact_phone", config.contact_phone],
+                ["footer_text", config.footer_text]
+            ])
+        });
+        renderPrompts();
+        renderBlog();
+        updateOfferDemand();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d7cc3bde40aad16',t:'MTc3Mjc1MTkxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
